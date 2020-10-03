@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位2</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #outer{
+            width: 500px;
+            height: 500px;
+            background-color:#cccccc;
+            margin-left: 100px;
+            margin-top: 50px;
+
+/* 下面的同理pading  但是border只能用border-left right top bottom */
+            /* 上 左右 下
+            margin: 50px 60px 70 px; */
+
+            /* 上下 左右
+            margin: 50px 60px; */
+
+            /* 上 右 下 左
+            margin: 50px 60px 70px 80px; */
+        }
+     .box{
+         width: 100px;
+         height: 100px;
+         display: inline-block;
+       
+     }
+     #box1{
+         background-color: red;
+     }
+     #box2{
+         background-color: green;   
+         /* position: absolute; */
+         /* 脱离文档流(原来占的位置被释放,后面的元素占据原来的空间) 
+          在另一个层里呈现,类似与ps的图层效果,相对于最近 !!已定位(用position)的父元素!!! 进行定位  */
+
+         /* position: relative; */
+         /* relative 
+         1.相对于自己原来的位置计算 
+         2.不脱离文档流(原来占的位置不被释放,依然占据原来的空间)
+         3.可能会覆盖其他元素*/
+
+         /* position: fixed; */
+         /* fixed 计算位置相对于浏览器窗口  脱离文档流(原来占的位置被释放,后面的元素占据原来的空间) */
+         position: sticky;
+         /* sticky 计算位置随着浏览器窗口滚动,原来的位置不被释放,依然占据原来的空间 */
+        top: -10px;
+        left:200px;
+         /* bottom: 20px; */
+     }
+     #box3{
+         background-color: blue;
+     }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        <div class="box" id="box3"></div>
+    </div>
+
+    
+</body>
+</html>

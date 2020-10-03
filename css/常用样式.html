@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用样式</title>
+    <style>
+        h1{
+            background-color: rgba(255, 0,0,0.2);
+        }
+   #box1{
+       width: 1000px;
+       height: 1000px;
+       border: red solid 2px;
+       font-size: 20px;
+   }
+   #box1 .box{
+       /* %针对父元素计算的 */
+    /* width: 50%;
+    height: 50%; */
+
+    /* em根据父元素的字体大小，1em=字体尺寸 */
+    /* height: 10em; */
+
+    /* rem根据根元素的字体大小 */
+    /* height: 10rem;  为什么是16（浏览器默认字体为16？）*/
+
+    /* vw vh 是可视化窗口大小 根据百分比 */
+    /* wmin vmax 可视化窗口的最大值 最小值 */
+    /* 10vmin=10vh, 10vmax=10vw*/
+
+    /* height: 10vmax; */
+    /* height: 10vw; */
+
+    /* cal() 在单位中可以混用 */
+    height: calc(50% + 10rem);
+    background-color: salmon;}
+
+    #box2{
+               width: 1000px;
+               height:600px;
+               border: #ff0000 solid 10px;
+    }
+   .bg{
+       width: 800px;
+       height: 400px;
+       background-color: pink;
+       background-image: url(../html/fire.jpg);
+       /* background: pink url(../html/fire.jpg); */
+
+        /* 不设置的话 图片小于元素尺寸会重复打印 */
+       background-repeat:  no-repeat;
+
+       /* 背景会默认占据内边距 四个内边距都是100px */
+       padding: 100px;
+       /* 背景默认不会占据外边距  四个外边距都是100px */
+       /* margin: 100px; */
+
+       /* background-position: center center; */
+
+       /* background: fixed; */
+       overflow: scroll;
+       /* fixed 起始位置相对于浏览器窗口可视区左上角 而非父元素 */
+       /* background-attachment: fixed; */
+
+       /* 规定背景图片的绘制区域 */
+      /* background-origin: content-box; */
+      /* background-origin: border-box; */
+
+      /* 设置背景图片大小。图片可以保有其原有的尺寸，或者拉伸到新的尺寸，或者在保持其原有比例的同时缩放到元素的可用空间的尺寸。 */
+      background-size: contain;
+      /* 设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面。 */
+      background-clip:padding-box;
+    /* cover :等比缩放大 覆盖容器  contain :等比缩放大 不超过容器即可  */
+      /* background-clip: text;
+      -webkit-background-clip: text; */
+   }
+   #font{
+       background: green;
+       height: 100x;
+       color: red;
+       text-align: left;
+       line-height: 50px;
+       text-decoration: rebeccapurple line-through;
+       font-style: italic;
+       font-weight: 300;
+       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+       opacity:0.5;
+   }
+    </style>
+</head>
+<body>
+    <h1>住在山里<a href="https://www.douyu.com/9418">真不错</a></h1>
+    <div id="box1" >
+        <div class="box">针不戳</div>
+    </div>
+    <div id="box2">
+        <div class="bg">666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666666很不错666很不错666</div>
+    </div>
+    <div id="font">Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.</div>
+
+</body>
+</html>

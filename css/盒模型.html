@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒模型</title>
+    <style>
+        /* 块级盒子
+        1.默认宽度与父元素相同
+        2.每一个块级元素都会换行
+        3.宽高可以发挥作用
+        4.padding，margin,border会将其他元素从当前盒子周围推开
+         */
+         *{
+             padding: 0;
+             margin: 0;
+         }
+        div:nth-child(1){
+            background-color: salmon;
+            width: 100px;
+            height: 100px;
+            /* padding会把元素中的内容向内挤，盒子所占的空间会变大 */
+            padding: 10px;
+            /* margin会把其他元素退离当前元素 */
+            margin: 20px;
+            border: 5px solid red;
+            /* 怪异盒模型(ie) */
+    
+            box-sizing: border-box;
+            /*  width 和 height 属性包括内容，内边距和边框，但不包括外边距。 */
+
+        }
+        div:nth-child(2){
+            background-color: yellow;
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            padding: 20px;
+            /* 上下边距合并 */
+            /* 空元素在中间自己和自己合并 */
+           /* border: red solid 2px;
+           overflow: hidden; */
+           
+        }
+        div:nth-child(1) span:nth-child(1){
+            background-color: white;
+
+        }
+        div:nth-child(3){
+            margin: 20px;
+        }
+       div:nth-child(4){
+               background-color: red;
+               height: 100px;
+               width: 100px;
+               margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>div 
+    <span>
+        span1
+    </span>
+
+    <span>
+        span2 span2 span2 span2
+    </span>
+</div>
+<div>div2</div>
+<div></div>
+<div>div4</div>
+    
+</body>
+</html>

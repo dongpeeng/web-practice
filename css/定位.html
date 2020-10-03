@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 800px;
+            height: 800px;
+            border: chartreuse solid 2px;
+            background-color: red;
+            position: relative;
+            left:   20px;
+            top: 20px;
+        }
+        .box div:nth-child(1){
+            width: 800px;
+            height: 800px;
+            background-color: cadetblue;
+           /* 静止定位:没有变化(默认值),[将元素放在它在文档流的正常位置] top left的值没有用*/
+            /* position:static */
+
+             /* 相对定位 可以改变top left的值,占据正常的文档流中 相对于自己原来的位置位移 */  
+            /* position: relative; */
+
+          /* 绝对定位:
+          脱离文档流,将定位的元素在文档中不占任何空间 
+          脱离文档流(原来占的位置被释放,后面的元素占据原来的空间) 
+          ,在另一个层里呈现,类似与ps的图层效果,相对于最近 !!已定位(用position)的父元素!!! 进行定位 */
+            position: absolute;
+            top: 50px;
+            left: 100px;
+
+        }
+        div:nth-child(2){
+            width: 300px;
+            height: 300px;
+            background-color: chartreuse;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <div>相对定位</div> -->
+    <div class="box">
+         <div>1.绝对定位</div>
+    </div>
+    <div>2.未定位</div>
+    <div>3.固定定位</div>
+    <div>4.粘性定位</div>
+</body>
+</html>

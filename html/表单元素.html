@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单元素</title>
+    <style>
+     div{
+         padding: 10px;
+     }
+    </style>
+</head>
+<body>
+    <!-- 表单控件 -->
+    <!-- get -->
+    <!-- post -->
+    <form  action="">
+        <div>
+            <label for="name">姓名：</label>
+        <input id="name" type="text" name="name" id="">
+        <!-- <label for="correct">是否正确</label>
+        <input id="correct" type="button" value="✔">
+        <input id="correct" type="button" value="❌"> -->
+        </div>
+        <div>
+            <label for="sex">性别:
+                男 <input id="sex" type="radio" name="sex" value="male" id="sex">
+                女 <input id="sex" type="radio" name="sex" value="female" id="sex">
+            </label>
+        </div>
+        <div>
+            <label for="hobby">爱好:</label>
+            篮球<input id="hobby" type="checkbox" name="hobby" value="basketball" id="">
+            钢琴<input id="hobby" type="checkbox" name="hobby" value="piano"      id="">
+            小提琴<input id="hobby" type="checkbox" name="hobby" value="violin"     id="">
+            <!-- <input id="sex" type="radio" name="sex" id="male">
+            <input id="sex" type="radio" name="sex" id="female">  -->
+        </div>
+        <div>
+          <label for="pwd">密码：</label>
+          <input id="pwd" type="password" name="pwd" id="">
+        </div>
+        <div>
+            <input type="file" name="" id="">
+        </div>
+        
+        <div>
+            <label for="age">年龄：</label>
+            <select name="age" id=""> 
+                <option value="18岁以下">18岁以下</option>
+                <option value="18岁到30岁">18岁到30岁</option>
+                <option value="30岁到40岁">30岁到40岁</option>
+            </select>
+
+
+</div>
+<div>
+    <textarea name="description" id="" cols="30" rows="10"></textarea>
+</div>
+<!-- html5 -->
+<div>
+ 邮箱<input type="email" name="email" id="">
+</div>
+<div>
+网址<input type="url" name="url" id="">
+</div>
+
+
+
+<div>
+    数量<input type="number"max="10" min="0" name="number" id="">
+    <br>
+    范围<input type="range" max="10" min="0" name="range" id="">
+    
+</div>
+
+<div>
+    日期<input type="date" name="date" id="">
+
+</div>
+
+
+<div>
+    <input type="button" value="返回">
+    <input type="reset" value="重置">
+    <input type="submit" name="submit" id="">
+
+</div>
+
+</form>
+<!-- <input type="submit" name="提交" id="1"> -->
+
+    
+</body>
+</html>

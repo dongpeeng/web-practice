@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性响应式例子</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        section{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        article{
+            box-sizing: border-box;
+            padding: 20px;
+            margin: 20px;
+            width: 200px;
+            height: 200px;
+            border: blue 2px solid;
+            flex: 0 1 300px;
+        }
+        #box1{
+            width: 200px;
+            height: 200px;
+            background: purple;
+            padding: 20px;
+            margin: 10px;
+            border: blue 2px solid;
+            /* 怪异盒模型:宽高基于border区域计算 */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article>       
+         <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article>         
+        <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article>         
+        <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article>         
+        <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article>         
+        <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article>
+        <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article> 
+         <article>
+            <h1>唯创前端教学</h1>
+            <p>哈尔滨最好的前端教学学校没有之一,来了绝对不会后悔</p>
+        </article>  
+    </section>
+    <div id="box1"></div>
+</body>
+</html>

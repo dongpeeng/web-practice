@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性盒模型</title>
+    <style>
+        #box1{
+            width: 590px;
+            height: 300px;
+            border: indigo solid 2px;
+            /* 声明该容器采用弹性布局 */
+            display: flex;
+
+            
+            /* 决定主轴的方向:项目沿着主轴的方向排列 */
+            /* flex-direction: row; */
+            /* 决定交叉轴的方向:项目沿着交叉轴的方向换行 */
+            flex-wrap: wrap;
+
+            /* 上面两个属性的合写 */
+            /* flex-flow:row wrap; */
+            /* 在主轴方向的是一行项目,在容器中如何分布(项目在主轴上的对齐方式) */
+            /* justify-content: flex-start; */
+
+            /* 项目在交叉轴上如何对齐 */
+            /* align-items:baseline; */
+            /* (沿着交叉轴方向的每一行) 在容器中如何分布.如果项目只有一条zhou'xian,该属性不起作用 */
+            /* align-content: flex-start; */
+            /* align-items: stretch; */
+        }
+        .item:nth-child(2){
+            padding:20px 0;
+
+            /* align-item的个性化设置 */
+           /* align-self: flex-end; */
+
+           /* 如何承担容器的剩余空间 */
+           /* flex-grow: 6; */
+
+           /* 如何承担容器的欠债空间 */
+           /* flex-shrink: 3; */
+
+           /* 跟width作用一样,优先级比width高 */
+           /* float: basis 200px; */
+
+           /* 排序:默认值是0,数越小越靠前 */
+           /* order: 1; */
+           /* display: flex; */
+        }
+        .item{
+            width: 100px;
+            height: 100px;
+            background: khaki;
+            margin:  0 20px;
+            /* padding:20px; */
+            /* border:lavender 5px solid; */
+            /* flex-grow: 1; */
+            /* flex: 1 0 200px; */
+        }
+        .sub-item{
+            width: 30px;
+            height: 30px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <!-- <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div> -->
+
+        
+    </div>
+</body>
+</html>

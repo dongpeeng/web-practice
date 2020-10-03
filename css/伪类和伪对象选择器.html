@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪类和伪对象选择器</title>
+    <style>
+      #box1{
+           width: 300px;
+           height: 500px;
+           border: navy 2px solid;
+             background-color:white;
+      }
+      /* 伪类选择器 */
+      #box1 li:hover{
+          background-color: orchid;
+          margin: 3px;
+          padding: 2px;
+      }
+      /* 每一代最后一个孩子 */
+      /* #box1 :last-child{
+                border-bottom: red solid 2px;
+      } */
+
+      /* 每一代的第二个孩子 */
+      /* #box1 :nth-child(2){
+          border-top: red;
+      } */
+
+      /* 伪类亲儿子（只有一代内的）的选择 */
+      /* #box1>:nth-child(1){
+           border-bottom: violet solid 2px;
+      } */
+  
+     #box1 :nth-of-type(1){
+          border-bottom: 2px solid black;
+      }
+     #box1 :first-child{
+         border-top: 2px solid red;
+     }
+     #box1 p:nth-child(4){
+         border-bottom: red 1px solid;
+     }
+     /* 伪对象/元素选择器  以后用::*/
+     #box1 p::after{
+         content: "❤";
+         color: red;
+         
+     } 
+     #box1  h1::before{
+            content: 'what wd';
+
+     }
+    </style>
+</head>
+<body>
+
+    <div id="box1" >
+        <p>我有一个苹果</p>
+          <ul>
+              <li>1
+                  <ul>
+                      <li>1.1</li>
+                      <li>1.2</li>
+                      <p>1.3</p>
+                      <p>1.4</p>
+                      <h1>1.5</h1>
+                  </ul>
+              </li>
+              <li>2</li>
+              <li>3</li>
+          </ul>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <h1>1</h1>
+        <h1>2</h1>
+        <h1>3</h1>
+        <p>25</p>
+        
+    </div>
+</body>
+</html>

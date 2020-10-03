@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>默认布局</title>
+    <style>
+        /* 默认布局 */
+        /* 对于块级元素
+           1.每一个块级元素会在上一个元素下面另起一行
+           2.默认的块级元素的宽度是其父元素的100%,高度由元素内容提升（高度与其内容高度一致）
+         */
+         
+       *{
+           padding :0;
+           margin: 0; 
+       }
+        #box1{
+            /* width: 100px;
+            height: 100px; */
+            background-color: blueviolet;
+        }
+        #box1 .son{
+            background-color: cadetblue;
+            /* 块-->行 */
+            display: inline;
+            /* width: 200px; */
+        }
+        /* 行元素
+          1.父级元素的宽度足够话，行内元素会与文本内容一行，否则超出部分会到下一行    
+          2.行元素的宽高与内容一致，无法设置行内元素的宽高
+         */
+        #box2{
+            width: 200px;
+        background-color: chartreuse;
+        }
+        #box2 span{
+             background-color: cornflowerblue;
+             border: crimson solid 2px;
+             /* 行-->块 */
+             width: 500px;
+             display: block;
+
+        }
+        #box3{
+            width: 200px;
+            height: 200px;
+           border-color: crimson 2px solid;
+
+        }
+        #box3 .item{
+            width: 50px;
+            height: 50px;
+            background-color: darkcyan;
+            /* 可以设置宽高的行元素 */
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">爸爸
+        <div class="son">儿子儿子儿子</div>
+    </div>
+    <div id="box2">
+        这里由很多很多的内容。。。
+        这里由很多很多的内容。。。
+        <span>22222</span>
+        <span>11111111111</span>
+        <!-- 没空格 默认是一个英文单词/字 -->
+<span>ppppppppppppppppppppppppppppp</span>
+        <span>I Love The World.I Love The World.I Love The World.I Love The World.I Love The World.I Love The World.I Love The World.I Love The World.</span>
+    </div>
+    <div id="box3">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    
+</body>
+</html>

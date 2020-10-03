@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优先级与继承</title>
+
+    <style>
+        /* id选择优先级高 */
+        /* 权重值计算 权重值相同的情况下 用下面的 */
+        /* 不允许进位 （20个类 对比 一个id） */
+        h1{
+           color: tomato;
+        }
+        #fine{
+            color: skyblue;
+
+        }
+        .ok{
+            color: red;
+        }
+        /* 不是所有属性都被继承 */
+        body{
+            color: royalblue;
+            border: red solid 2px;
+
+        }
+        /* 控制继承 */
+    </style>
+</head>
+<body>
+    <h1 id="fine" class="ok">今天天不错</h1>
+    <p>今天天气晴朗，万里无云</p>
+</body>
+</html>
