@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习2</title>
+</head>
+<body>
+    <script>
+        var thisYear;
+        var today =new Date();
+        var year = today.getFullYear();
+        // function fun2(day,year){
+        //     if(year%4==0 && year%100!=0 || year%400==0 ){
+        //             console.log("今年是闰年");
+        //            alert(day,year);
+        //            alert("今年是闰年")
+        //     }
+        //     else{
+        //         console.log("今年是余年");
+        //         alert("今年是余年");
+        //     }
+        // }
+        // fun2(today,year);
+        document.write("今天是:");
+        document.write(today);
+        document.write("<BR>")
+        var leapYear = (year%4==0 && year%100!=0 || year%400==0 )?document.write("今年是闰年"):document.write("今年不是闰年");
+        // leapYear?document.write("今年是闰年"):document.write("今年不是闰年");
+    </script>
+</body>
+</html>

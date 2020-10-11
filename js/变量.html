@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量</title>
+</head>
+<body>
+    <script>
+//js的五种基本数据类型
+
+        // 字符型 string
+        var str1 ="字";
+        var str2 ="一堆字";
+        // 数值型 number
+          var num = 1;
+          console.log(num);
+          console.log(str2);
+          //布尔型 boolean
+          var b1 =true;
+          var b2 =false;
+          console.log(b1);
+          //undefined :定义一个变量 没有给他赋值
+          var aa;
+          console.log(aa);
+          console.log(b1+num);
+
+          var bb = undefined;
+          console.log(bb);
+
+          //console.log(qq);//报错qq is not defined
+
+          var nu = null;//对空对象的引用：null是一个不存在对象的占位符
+
+
+          //两种引用数据类型 数组和对象
+          var arr =[1,2,3];
+          console.log(arr);
+
+          var obj={
+              name:'lisi',
+              age:23
+          }
+          console.log(obj);
+
+        //变量的数据类型可以随意的切换
+          str1=999;
+          console.log(str1);
+
+        //变量可以省略定义直接赋值
+           str3 ="哈哈哈";
+          console.log(str3);
+          哈哈="haha"
+        console.log(哈哈);
+        //变量的命名规则
+        //必须由字符数字下划线$组成
+        //不能以数字开头
+        //严格区分大小写
+        //不能用关键字和保留字
+      var testName ='hello'//驼峰式命名
+
+    </script>
+</body>
+</html>
