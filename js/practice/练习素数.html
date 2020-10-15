@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>素数</title>
+</head>
+<body>
+    <script>
+  var n = parseInt(prompt("N="));//输入的为正整数
+        function fun(n) {
+            var j;
+            if(n<2)
+                return false;
+            
+            for(j=2;j<n;j++){
+                if(n%j==0) return false;//被2到n-1的整除 返回false  （不是素数）
+                    //  return true;    //如果将return true 放里面相当于：判断不被2整除的数 
+                                        //首先判断n是否被2整除 被整除就为false 不被2整除就为true 450个不被2整除的数
+               
+            }
+                 
+            return true;    
+            
+          
+        }
+    //  var num=prompt("请输入数字：");
+     alert(fun(n));
+
+var i=100
+var k=0;
+        for(i;i<1000;i++){
+            if(fun(i)){
+                document.write(i+' ');
+                k++;
+            if(k%6==0){
+                document.write("<br>");
+            }
+            }
+
+        }
+        document.write("<br>"+"共有"+k+"个素数");
+
+    </script>
+</body>
+</html>

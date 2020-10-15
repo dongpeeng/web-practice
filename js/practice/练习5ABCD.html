@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习5</title>
+</head>
+<body>
+    <script>
+        var x=1000;
+
+            console.log(b);
+            document.write("满足条件的四位数为:");
+        for(;x<10000;x++){
+            var a =Math.floor(x/1000);
+            var b =  (Math.floor(x/100))-a*10;//用前两位减去 第一位乘10
+            var c = (Math.floor(x/10))-(Math.floor(x/100))*10;//用前三位减去前两位乘10
+             
+            if(x%13==0 && (a==(b+c))){
+                document.write("<br>");
+                document.write(x);
+                console.log(x);
+            }
+             
+        }
+    </script>
+</body>
+</html>

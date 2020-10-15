@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习3</title>
+</head>
+<body>
+    <div>阶乘</div>
+   <script>
+    function  fun1(n){
+        var n;
+           if(n==0)
+               return 1;
+                      
+       else 
+        return n*fun1(n-1);
+ 
+       }
+      var sum =0;
+       document.write("10的阶乘为："+fun1(10));
+       for(var i=1;i<=10;i++){
+         sum +=fun1(i);
+
+       }
+       document.write("<br>")
+       document.write("1到10的阶乘之和为:"+sum);
+       //第二种
+       var sum1 =0;
+       function fun2(x){
+                   var x;
+                     if(x==0){
+                        return 1;
+                     } 
+                    else { 
+                        for(var i=1;i<=x;i++ )
+                    {
+                        sum1+=fun1(i);
+     
+                         
+                    }
+                     return sum1;
+                    } 
+
+       }
+       console.log(fun2(10));
+
+       //第三种
+    var sum1=0;
+    var fab=1;
+    function fun3(x){
+                   var x;    
+               
+                    for(var i=1;i<=x;i++)
+                    {
+                      fab*=i;
+                      sum1+=fab;
+
+                    }
+                        return sum1;   
+                             
+                    }
+
+              console.log(fun3(10));
+
+
+    //第四种
+    var sum2=0;
+    for(var i=1;i<=10;i++){
+        var n=1;
+        console.log("iiii:"+i);
+        for(var j =1;j<=i;j++){
+            n*=j;
+        }
+        sum2+=n;
+        console.log(sum2); 
+    }
+
+    document.write("<br>")
+    document.write("第三种方法-- 1到10的阶乘之和为:"+sum2);
+   </script>   
+</body>
+</html>

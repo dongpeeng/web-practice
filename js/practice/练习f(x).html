@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习6</title>
+</head>
+<body>
+    <script>
+        function fun(x){
+                  y=4*pow(x,2)+3*x+2;
+                  return y;
+        }
+        function pow(x,y){
+                      z=1;
+                    //  numStr ='x'+','+'y';              
+                     for(i=1;i<y;i++){
+                         z*=x;
+                        
+                     }
+                     return z;
+            
+        }
+        // var num1;
+        // var num2;
+        // var numStr =pow(x,y);
+        // // confirm("请输入数字:"+numStr);
+     
+        //   var numStr =prompt("请输入数字:");
+        //   alert(pow(numStr));
+        //   console.log(pow(numStr));
+
+          var num =prompt("请输入数字:","");
+          document.write("结果为:"+fun(num));
+          alert(fun(num));
+           console.log(fun(num));
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>被2整除</title>
+</head>
+<body>
+    <script>
+        var k=0;
+        for(var i=100;i<1000;i++){
+            if(i%2!=0){
+                document.write(i);
+                k++; 
+
+                if(k%6>0){
+                      
+                      document.write(" ");
+                 } 
+                     else
+                         document.write("<br>");  
+        }
+
+            }
+             
+      
+        document.write("<br>"+"被2整除的个数为："+k);//450个
+    </script>
+</body>
+</html>

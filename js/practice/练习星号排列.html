@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星号排列</title>
+</head>
+<body>
+    <script>
+        var k=1;
+        function fun(n){
+            for(var i=1;i<=n;i++){
+            document.write("<br>");
+            for(k=1;k<=n-i;k++){
+                document.write("&nbsp");
+            }
+            for(var j=1;j<=i;j++){
+                document.write('* ');
+            }
+        }
+        }
+        x=prompt("请输入数字");
+        fun(x);
+    
+    </script>
+</body>
+</html>

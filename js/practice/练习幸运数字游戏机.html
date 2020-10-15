@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸运数字游戏机</title>
+</head>
+<body>
+    <div>
+          利用全局变量和函数，设计模拟幸运数字机游戏。
+          设幸运数字为8，每次由计算机随机产生3个1-9之间(包括1和9）的随机数，
+          当这3个随机数中有一个数字为8时，就算赢了一次，要求利用函数计算获胜率。
+
+    </div>
+    <script>
+        var winRate=0;
+        var num=''; 
+        var wins=0;
+        var isWin=false;
+        var playTimes=0;
+    
+
+
+
+       function game() {
+         
+       
+        var a=0;
+         isWin=false;
+         num='';
+        
+         for(var i=0;i<3;i++){
+             a=parseInt(Math.random()*9+1);
+             num+=a;
+            if(a==8){
+               isWin=true;
+            //    confirm(a+''+c+''+c+" 赢了"+" 胜率为："+winRate+'%');
+           }
+        }
+           if(isWin){
+            wins++;
+           }
+               
+                playTimes++;
+                 winRate=Math.floor(100*(wins/playTimes));
+            //  confirm(a+''+b+''+c+" 输了"+" 胜率为："+winRate+'%');
+        
+            
+           
+ 
+
+            // if(x==8||y==8||z==8)
+                   
+                   
+            //        return true;
+                
+          
+
+            // else
+                  
+              
+            //           return false;
+            
+      
+              
+
+            }
+           
+
+        //    game();
+        //    var playTimes=0;
+        //    playTimes++;
+            
+
+        //     if(game(a,b,c)){
+               
+        //         wins++;
+        //         winRate= Math.floor(100*(wins/playTimes));
+        //         confirm(a+''+b+''+c+" 赢了"+" 胜率为："+winRate+'%');
+
+        //     }
+        //     else
+        //           winRate=Math.floor(100*(wins/playTimes)); 
+        //       confirm(a+''+b+''+c+" 输了"+"胜率为："+winRate+'%');
+
+        
+
+        while(true){
+             game(); 
+       if(!confirm(num+'\n'+(isWin?'赢了':'输了')+'胜率：'+winRate+'%'+',继续吗'))//点击取消 break
+       {
+           break;
+       };
+            
+
+        }
+     
+ 
+
+
+ 
+        // confirm(a+''+b+''+c);
+  
+
+
+      
+      
+    </script>
+</body>
+</html>

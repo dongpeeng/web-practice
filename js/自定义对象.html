@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义对象</title>
+</head>
+<body>
+    <script>
+        //js中三种基本类型
+        //1.自定义对象    人到图书馆借书
+        //对象：
+            // 人：
+            //    属性：姓名、身份证
+
+            // 图书馆：
+            //    属性：馆名、地址
+            
+            // 书：
+            //    属性：书名、isbn
+            
+            // 管理员：
+            //     属性；
+            //     方法；登记（）
+
+        function person(name,id){
+        this.name=name;
+        this.idCard=id;
+        }
+        var person1=new person('zhangsan','123');
+        var person2=new person('lisi','456');
+
+        var library={
+            libraryName:"学府书店",
+            address:'南岗区学府路'
+        };
+
+        function book(name,isbn){
+         this.bookName=name;
+         this.isbn=isbn;
+            
+        }
+        var book1 =new book('大学英语四级','12234');
+        var book2 =new book('javascript高级程序设计','1223454574');
+
+        function manager(){}
+        manager.prototype.regist= function(person,book){
+                console.log('借书人: '+person.name+',书名: '+book.bookName);
+            };
+       var manager1=new manager();
+       manager1.regist(person1,book1);
+       var manager2=new manager();
+       manager2.regist(person2,book2);
+
+        //2.内置对象
+     
+            //编程范式：
+            //1.面向过程编程
+            //2.面向对象编程
+            //3.泛型编程
+            //4.函数式编程
+            //5.可微分编程
+
+        //3.bom和dom对象
+    </script>
+</body>
+</html>
