@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //引用传递 和值传递
+      //x={};
+        var x=5;
+        function test(){
+             x=6;
+            function test2(){
+                var x =7;
+                console.log(x);
+            }
+            test2();
+
+        }
+        test();
+        
+    </script>
+</body>
+</html>

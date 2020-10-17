@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组成绩</title>
+</head>
+<body>
+    <script>
+var i=0;
+var sum=0;
+var arr1=[];
+var str='';
+        var arr1=new Array(7);
+        // var arr2=new Array();
+        function arr(){
+            for( i=0;i<7;i++){
+            
+                arr1[i]=prompt("请输入第"+(i+1)+"门成绩"); 
+       
+                sum+=Math.floor(arr1[i]);
+                if(arr1[i]<60){
+                   str+=arr1[i]+',';
+                }
+                 
+            }
+            document.write('所有成绩:'+ arr1.slice(',')+'<br>');
+           document.write('总成绩：'+sum+'<br>');
+           document.write('平均成绩：'+sum/7+'<br>');
+           document.write("不合格的成绩："+str);
+           
+        }
+        arr();
+    </script>
+</body>
+</html>

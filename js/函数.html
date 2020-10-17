@@ -21,10 +21,10 @@
        fun2();
        //形参
        function add(x,y) {
-           console.log(x+y);
+           console.log(x+y); 
            console.log(x);
            console.log(y);
-           console.log(arguments); //返回参数  以数组形式
+           console.log(arguments); //返回参数  以数组形式//arguments 来保存函数的所有实参的数组
            console.log(arguments.length); // 数组长度 
            return x+y;
         }
@@ -47,6 +47,37 @@
        }
         var result = factorial(5);
         console.log(result);
+
+
+//闭包:1.在外部函数的内部声明内部函数,2.在内部函数引用了外部函数的局部变量  必须同时满足两个条件
+//在外部函数调用完毕之后 局部变量不被释放
+function fn1(){
+    var a= 5;
+    function fn2(){
+        return a;
+    }
+    return fn2;
+}
+//立即执行函数 立即调用 调用一次
+    (function(name){console.log(name);})('zhangsan');
+    
+    for(var i=0;i<3;i++){
+        (function(index){            
+            setTimeout(function(){     
+                console.log(index)
+            },(index+1)*1000);
+        })(i);
+    }
+
+    for(var i=1;i<3;i++){
+        setTimeout(
+           (function(index){
+               (function(){
+                   console.log(index);
+               })(i);
+           }),(i+1)*1000);
+    }
+
     </script>
 </body>
 </html>
