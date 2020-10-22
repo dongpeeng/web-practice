@@ -1,0 +1,28 @@
+<script>
+    function test(name,age){
+        console.log(this);
+        console.log(name);
+        console.log(age);
+    }
+    test(3,4);
+    test.call({name:'lisi'},'lisi',23);         //可以改变函数中的this指针，指向call的第一个参数    .call(*this,x,y,....) 
+    test.apply({name:'wangwu'},['lisi',23]);    //.apply(*this,[x,y])            相当于继承 不等于继承  基于原型的继承
+
+    // test.bind(Fn)('LAOLIU',13);
+    test.bind(Fn,'LOLIU',13)();  //改变指针     如果调用函数+（）   放到调用括号里里和band（）里结果一样
+
+   function Fn(){
+      this.name='sz';
+      this.age=24;
+   }
+   function Cn(){
+       this.name='laowu';
+       Fn.call(this);
+       console.log(this);
+   }
+   Cn();//window
+   var c1= new Cn(); //Cn{}
+   console.log(c1.name);//sz
+
+   //箭头函数  （）=>{}  直接改变函数this 为上一级this
+</script>

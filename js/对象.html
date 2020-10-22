@@ -48,9 +48,10 @@
     o3.gender ='male';//o3自己的属性
     o3.name='laowu';
     o1.name='laoliu';
-    console.log(o3.name); //先找子对象 子对象没有再找父对象
+    console.log(o3.name); //先找子对象 子对象没有再找父对象// laowu
 
     //4.new Class
+
     //es6：
     class person{
                    constructor(n,a){
@@ -64,15 +65,20 @@
     //es5-：
     //定义类
     //约定：属性放在类的构造函数中，方法放在原型中
+
     //栈内存 stack 连续存储  堆内存 heap 散列存储
-    function Person(name,age){//类
+    function Person(name,age){//类       大写的p 表示类
         this.name=name;
         this.age=age;
         // this.sayhello=function(){
         //  console.log('my name is '+this.name+",");
         // };
     }
-    person.prototype.sayhello=function(){
+    Person.prototype.gender='male';
+    Person.prototype.brother={
+        name:'lixx'
+    };                  // 属性放在类的构造函数内  不然容易被改
+    Person.prototype.sayhello=function(){                 //方法放在原型
          console.log('my name is '+this.name+",");
         };
     //创建类的实例对象
@@ -80,6 +86,11 @@
     var p2=new Person('zhangsan',6);
     console.log(p2.sayhello());
     p2.sayhello();
+
+
+
+
+
 
     //值传递和引用传递
     //基本数据类型值传递   
@@ -102,7 +113,7 @@
     }
        var x='name';
     console.log(obj['x']);//obj.x  x是属性 undefined
-    console.log(obj[x]);//obj.name x属性值
+    console.log(obj[x]);//obj.name 
 
     //for in 循环  对象内部的遍历循环
     for(var  prop in obj){
