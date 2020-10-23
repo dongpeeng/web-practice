@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>轮播图</title>
+    <title>滑动轮播图</title>
     <style>
         *{
             margin: 0;
@@ -15,17 +15,24 @@
    #container{
        width: 520px;
        height: 280px;
-       /* display: block; */
+     
        margin: 50px auto 0;
        position: relative;
+       overflow: hidden;
 
    }
-   #img-box>img{
-       display: none;
+   #img-box{
+       width: calc(800px * 5);
+       position:absolute;
+      left: 0;
+      top: 0;
+      transition: ease 1s left;
    }
-   /* #img-box>img.active{
-       display: block;
-   } */
+   #img-box>img{
+      float: left;
+
+   }
+
    #tab{
        display: flex;
        width: 120px;
@@ -51,33 +58,33 @@
     width: 35px;
     height: 30px;
     line-height: 25px;
-    text-align:left;
-    text-indent: 10px;
+    display: inline-block;
+    text-align:center;
+    font-size: 20px;
     left: 0px;
     bottom: 50%;
     position: absolute;
     background: rgba(0, 0, 0,0.4);
     color: #ffffff;
-    padding: 3px;
+    transform: translateY(-50%);
 
 }
 #span2{
     width: 35px;
     height: 30px;
     line-height: 25px;
-    text-align: left;
-    text-indent: 15px;
+    display: inline-block;
+   text-align: center;
+   font-size: 20px;
     right: 0px;
     bottom: 50%;
     position: absolute;
     background: rgba(0, 0, 0,0.4);
     color: #ffffff;
-    padding: 3px;
+    transform: translateY(-50%);
  
 }
-#img-box>img:first-child{
-    display: block;
-}
+
     </style>
 </head>
 <body>
@@ -105,14 +112,17 @@
     var oContainer=document.getElementById('container');
     var aImg=document.querySelectorAll('#img-box>img');
     var aLi =document.querySelectorAll('#tab>li');
+    var oImgbox=document.getElementById('img-box');
+
+    var currentIndex=0;
  function change(){
                  //样式初始化
                  for(var j=0;j<aLi.length;j++){
                 aLi[j].className='';
-                aImg[j].style.display='none'
+
             }
             aLi[currentIndex].className='active';
-            aImg[currentIndex].style.display='block';
+            oImgbox.style.left= -520*currentIndex+'px';
  }
     for(var i=0;i<aLi.length;i++){
         aLi[i].index=i;
@@ -125,12 +135,14 @@
     var oSpan1=document.getElementById('span1');
     var oSpan2=document.getElementById('span2');
 
-var currentIndex=0;
+
 
     oSpan1.onclick=function(){
     currentIndex--;
     if(currentIndex<0){
         currentIndex=4;
+        
+      
         
     }
     change();

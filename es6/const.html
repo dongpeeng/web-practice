@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>const</title>
+</head>
+<body>
+    <!-- var和const的区别 -->
+    
+    <script>
+       //const 也不存在变量提升
+       //const 也不允许重复声明
+       //赋值以后不允许更改变量的值（引用数据类型不能改地址）
+        // console.log(num);
+        // const  num =10;
+        // num=20;//报错
+        // console.log(num);
+
+        const obj1={
+            name:'llsi',
+            age:24,
+        }
+        obj1.name='zhangsan';
+        console.log(obj1.name);
+        obj1={   ////Uncaught TypeError:Assignment to constant variable  （创建了新的对象）不能更改地址
+            age:24,
+        }
+        console.log(obj1.age);
+    </script>
+</body>
+</html>
