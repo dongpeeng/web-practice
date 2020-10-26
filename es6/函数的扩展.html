@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的扩展</title>
+</head>
+<body>
+    <div id="div1">1232</div>
+    <script>
+        //this 的指向：（给谁绑定事件/方法，这个this就是谁）
+        //1.事件处理函数中this-> 绑定事件的dom元素
+        //2.在自定义函数中 this->window
+        //3.在定时器中 this->window
+        //4.在自定义对象中 this->实例化出来的对象
+
+        //设置默认值
+        let oDiv1=document.getElementById('div1')
+        oDiv1.onclick=function(){
+            console.log(this);//oDiv1
+            setTimeout(function(){
+               console.log(this);//window
+            },2000);
+        }
+        let obj1={
+            name:'lisi',
+            age:24,
+            eat:function(){
+                console.log('lisi is eating');
+            }
+        }
+        obj1.eat();
+        
+        function Person(name,age){
+            this.name=name;
+            this.age=age;
+            console.log(this);
+        }
+
+        let p1 =new Person('wangwu',34);
+        let p2 =new Person('zhaosi',34);
+ //改变this的指向
+ /* call 参数是多个（要改变的指针，后面的参数都是这个方法的实参）
+  apply  参数是两个 （要改变的指针，[parm1,parm2,,=....]）
+  bind    参数十多个 （要改变的指针，后面的参数都是这个方法的实参） 手动调用
+ */
+
+        function fn4(a,b){
+          console.log(a,this);
+        }
+        fn4(1,2); //1 window
+       fn4.call(oDiv1,'call');//call odiv
+       fn4.apply(oDiv1,['apply']);//apply odiv
+       fn4.bind(oDiv1,'bind')();// bind odiv
+//函数箭头的this 问题： 1.函数体内的this对象，就是定义是所在的对象，而不是使用时所在的对象
+                //    2.箭头函数内部的this是指向父作用域的this
+               //    （如果箭头函数被非箭头函数包含 则this指向的就是最近一层非箭头函数的this
+              //     否则this就指向全局对象【window】）
+
+
+        function fn1(x,y,z=888){-+
+            // z=z||6 66;
+            console.log(x,y,z);
+            console.log(this); //window
+
+        }
+        fn1(1,2);
+
+        //箭头函数
+        // let fn2=function(){
+
+        // }
+        let fn2=() =>{} //  let fn2=function(){}
+
+        //rest
+        let fn3=(x,y,...rest) =>{
+            console.log(rest);
+            //  console.log(arguments);//会报错  箭头函数没有arguments这个属性
+        }
+        fn3(1,2,3,4,5);
+        //没有设置默认值的参数的长度
+        console.log(fn3.length);//2
+        console.log(fn3.name);//fn3
+    </script>
+</body>
+</html>

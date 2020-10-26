@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的扩展</title>
+</head>
+<body>
+    <script>
+        /* 1.对象的简写 属性的简写 属性名和变量名一样 */
+        let name ='lisi';
+        let age =34;
+        let obj1={
+            name:name,
+            age:age,
+            eat:function(){
+                console.log(name+' is eating...');
+            }
+        }
+        console.log(obj1);
+        obj1.eat();
+
+        let obj2={
+            name,
+            age,
+            eat(){
+                console.log(name+' is eating...');
+            }
+        }
+        console.log(obj2);
+        obj2.eat();
+
+        /* 2.属性名表达式[] */
+        let xxx='myname';
+        let obj3={
+            name:'wangwu',
+            age:25,
+            [xxx+'A']:'zhangsan'
+        }
+          console.log(obj3);
+         /* 3.object.is('foo','foo'); 比较两个值是否严格相等，与严格运算符（===）的行为基本一致 */ 
+         console.log('111'===111);//false
+         console.log(Object.is('111',111));//false
+         console.log(+0===-0);//true
+         console.log(Object.is(+0,-0));//false
+         console.log(NaN===NaN);//false
+         console.log(Object.is(NaN,NaN));//true
+         /* 4.对象的合并  浅拷贝！！*/
+         let obj4 =Object.assign({},obj1,obj3);
+         console.log(obj4);
+         console.log(obj1);
+        /* 5.对象的遍历 */
+        //for...in
+        for(let p in obj4){
+            console.log(p);//属性名
+            console.log(obj4[p]);//属性值
+        }
+        console.log(Object.keys(obj4));//(4)["name", "age", "eat", "mynameA"] //属性名
+        console.log(Object.values(obj4));//(4) ["wangwu", 25, ƒ, "zhangsan"]  //属性值
+        console.log(Object.entries(obj4));//(4) [Array(2), Array(2), Array(2), Array(2)] //属性名和属性值在一个数组里
+        /* 6.判断对象中是否包含某个属性   [in] =>boolean*/
+        console.log('mynameA' in obj4);//true
+        console.log('mynameB' in obj4);//false
+    </script>
+</body>
+</html>

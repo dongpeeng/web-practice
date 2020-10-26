@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symbol&map&set</title>
+</head>
+
+<body>
+    <!-- 
+        1.基本数据类型： 
+                 number string boolean undefined null
+                  es6 : symbol()   
+        2.引用类型：数组 对象 
+     -->
+    <script>
+        let aaa = Symbol();
+        console.log(aaa);//symbol()
+
+        let bbb = Symbol();
+        console.log(bbb);//symbol()
+
+        console.log(aaa == bbb);//false
+        console.log(aaa === bbb);//false
+        console.log(Object.is(aaa, bbb));//false
+
+        let obj1 = {
+            name: 'wangwu',
+            age: 24,
+            [aaa]: 'aaa',
+            [bbb]: 'bbb',
+            [Symbol('s1')]: 's1',//给symbol加描述
+            [Symbol('s2')]: 's2',
+        }
+        //获取属性值
+        console.log(obj1);
+        console.log(obj1.name);//wangwu
+        console.log(obj1[aaa]);//aaa  如果属性名是symbol的时候只能通过这种方式取值
+        console.log(obj1[Symbol()]);//undefined
+        //输入属性
+        obj1.weight = '80kg';
+        obj1[Symbol('s3')] = 's3';
+        console.log(obj1);
+
+        //symbol属性无法通过循环取到 => 只能一个一个拿
+        for (let p in obj1) {
+            console.log(p);
+            console.log(obj1[p]);
+        }
+
+        console.log('-------------');
+
+        let a1 = [1, 2, 3, 4, 5, 6, 6, 6, 6];
+        let s1 = new Set(a1);//类数组 不允许成员重复
+        console.log(s1);
+        let a2 = [...s1];
+        console.log(a2);
+
+        //添加数据add（）
+        s1.add(888);
+        s1.add(6);
+        s1.add('hello');
+        s1.add({
+            world: 'world'
+        })
+        console.log(s1);
+
+        //数组长度 size 
+        console.log(s1.size);
+        //删除数据 delete（）=> boolean 
+        console.log(s1.delete(888));//true
+        console.log(s1.delete(0));//false
+        //判断是否含有某个数据 has（）=>boolean
+        console.log(s1.has('hello'));//true
+        console.log(s1.has('world'));//false
+        //清空 clear（）
+        //   s1.clear();
+        console.log(s1);
+
+        //循环 for ...of
+        for (let [index, value] of s1.entries()) {
+            console.log(index, value);
+        }
+        /* WeakSet ：和set类似 但是只能添加对象 */
+        let wsArr = new WeakSet();
+        let obj2 = {
+            name: 'zhansan',
+            age: 45
+        }
+        wsArr.add(obj2);
+        // wsArr.add(666);//报错 只能添加对象 别的类型的数值都不可以
+        console.log(wsArr);
+
+        console.log('-----------------');
+        let m1=new Map();
+
+        //添加成员 set（）
+        m1.set('name','laoliu');
+        //不允许有重复的key ，否则后面的会覆盖前面的
+        m1.set('name','laowu');
+        m1.set('age','24');
+        //获取长度
+        console.log(m1.size);
+        //获取数据 get（）
+        console.log(m1.get('age'));
+        //判断是否有某个key => boolean
+        console.log(m1.has('name'));
+        //删除数据 delete()
+        // console.log(m1.delete('age'));
+        //清空 clear
+        // m1.clear();
+        //循环
+        for(let[index,value] of m1.entries()){
+            console.log(index,value);
+        }
+        console.log(m1);
+
+        /* WeakMap */
+        let wm1=new WeakMap();
+        // wm1.set('name','wangwu');//报错 键名只能用对象，别的类型的值都不可以
+        wm1.set({name:'wangwu',age:36},'666')
+        console.log(wm1);
+    </script>
+</body>
+
+</html>

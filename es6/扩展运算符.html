@@ -1,136 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>扩展运算符</title>
 </head>
+
 <body>
     <li>1</li>
     <li>2</li>
     <li>3</li>
+    <div id="container">div1
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
     <script>
         //1.数组的扩展运算符
-        let arr1 =[1,2,3,[2,3]];
-         let arr2 =[...arr1];
-         //浅拷贝
-         //拷贝了但是是浅拷贝 不是赋值
-         console.log(arr2);
-         arr2[3][1]=666;
-         console.log(arr1);  //在第二层修改结果一样
+        let arr1 = [1, 2, 3, [2, 3]];
+        let arr2 = [...arr1];
+        //浅拷贝
+        //拷贝了但是是浅拷贝 不是赋值
+        console.log(arr2);
+        arr2[3][1] = 666;
+        console.log(arr1);  //在第二层修改结果一样
 
-         //
-         let arr3=[333,2,...arr1];
-         console.log(arr3);
-      //将多个数组连在一起  有顺序
-         let arr4=[1,2];
-         let arr5=['a','b'];
-         let arr6=[...arr4,...arr5];
-         //li 是类数组：看起来和数组一样 没有数组中的方法
-         let aLi=document.getElementsByTagName('li');
-         console.log(aLi);
-    //   aLi.push('abc');//报错
-    //   console.log(aLi);
+        //
+        let arr3 = [333, 2, ...arr1];
+        console.log(arr3);
+        //将多个数组连在一起  有顺序
+        let arr4 = [1, 2];
+        let arr5 = ['a', 'b'];
+        let arr6 = [...arr4, ...arr5];
+//li 是类数组：看起来和数组一样 没有数组中的方法
+        let aLi = document.getElementsByTagName('li');
+        console.log(aLi);
+        //   aLi.push('abc');//报错
+        //   console.log(aLi);
 
-      let aLI=[...aLi];
-      aLI.push('abc');
-      console.log(aLI);
+        let aLI = [...aLi];
+        aLI.push('abc');
+        console.log(aLI);
 
-         arr1.push('abc');
-         console.log(arr1);
-         
-//对象的扩展运算符
-  let obj1={
-      name:'lisi',
-      age:24,
-  }
-  let obj2={
-      ...obj1,
-  }
-  console.log(obj2);
-//让一个对象作为另一个对象的一部分
-//属性重名  后面会覆盖前面的
-  let obj3={
-      sex:'female',
-      name:'wangwu',
-      ...obj1,
-  }
-  console.log(obj3);
-  //3.将多个对象连在一起
-  let obj4={
-      height:'183cm',
-  }
-  let obj5={
-      ...obj1,
-      ...obj4
-  }
-  console.log(obj5);
+        arr1.push('abc');
+        console.log(arr1);
 
-//   rest内容
-    function fn1(){
-        //获取传递的所有实参
-        console.log(arguments);//[1,2,3,4,5]
-        console.log(arguments.length);
-        console.log(arguments.callee);
+        //对象的扩展运算符
+        let obj1 = {
+            name: 'lisi',
+            age: 24,
+        }
+        let obj2 = {
+            ...obj1,
+        }
+        console.log(obj2);
+        //让一个对象作为另一个对象的一部分
+        //属性重名  后面会覆盖前面的
+        let obj3 = {
+            sex: 'female',
+            name: 'wangwu',
+            ...obj1,
+        }
+        console.log(obj3);
+        //3.将多个对象连在一起
+        let obj4 = {
+            height: '183cm',
+        }
+        let obj5 = {
+            ...obj1,
+            ...obj4
+        }
+        console.log(obj5);
 
-    }
-    fn1(1,2,3,4,5);
-    function fn2(x,y,...rest){
-        //获取传递的所有实参
-        console.log(x,y);//1 2
-        //获取没接到的参数
-        console.log(rest);// [3,4,5]
-    }
-    fn2 (1,2,3,4,5);
+        //   rest内容
+        function fn1() {
+            //获取传递的所有实参
+            console.log(arguments);//[1,2,3,4,5]
+            console.log(arguments.length);
+            console.log(arguments.callee);
 
-    let [a,b,c,d,e]=[1,2,3,[4,5]];
-    console.log(a,b,c,d,e); //d是数组[4,5] e 是undefined
+        }
+        fn1(1, 2, 3, 4, 5);
+        function fn2(x, y, ...rest) {
+            //获取传递的所有实参
+            console.log(x, y);//1 2
+            //获取没接到的参数
+            console.log(rest);// [3,4,5]
+        }
+        fn2(1, 2, 3, 4, 5);
 
-//数值的扩展
-    //判断是不是数值 boolean
-    console.log(Number.isFinite(5));
-    console.log(Number.isFinite('abc'));//false
-    // Number.isNAN() :只有NAN返回true  其他的返回false          和isNAN不一样
-    console.log(Number.isNaN(NaN)); //true
-    console.log(Number.isNaN('ABC'));//false
-    console.log(Number.isNaN('ABC'-1));//true
-    console.log(isNaN('ABC'));//true
-    //判断是不是整数
-    console.log(Number.isInteger(5.6));//false
-    console.log(Number.isInteger('5'));//false
-    //将字符串转换为整型  （可识别8进制和16进制）
-    console.log('------------');
-    console.log(Number.parseInt(5.6));//5
-    console.log(Number.parseInt('5.6'));//5
-    console.log(Number.parseInt('a5.6'));//NAN
-    console.log(Number.parseInt('5.6AA'));//5
-    //将字符串转换为浮点型 
-    console.log(Number.parseFloat(5));5
-    console.log(Number.parseFloat('5abc'));//5
-    console.log(Number.parseFloat(3.1));//3.1
-    console.log(Number.parseFloat(3.0));//3
-    console.log(Number.parseFloat('3.0abc'));//3
-    console.log(Number.parseFloat('d3ab6ec'));//NAN
-    console.log(Number.parseFloat('0xffffff'));//0  不能识别16进制 和8进制
+        let [a, b, c, d, e] = [1, 2, 3, [4, 5]];
+        console.log(a, b, c, d, e); //d是数组[4,5] e 是undefined
 
-    //去除一个数的小数部分 ，返回整数部分
-    console.log(Math.trunc(4.14));//4
-    console.log(Math.trunc('4.14'));//4
-    console.log(Math.trunc('4.14a'));//NAN //////！
-    console.log(Math.trunc('a4.14a'));//NAN
+        //数值的扩展
+        //判断是不是数值 boolean
+        console.log(Number.isFinite(5));
+        console.log(Number.isFinite('abc'));//false
+        // Number.isNAN() :只有NAN返回true  其他的返回false          和isNAN不一样
+        console.log(Number.isNaN(NaN)); //true
+        console.log(Number.isNaN('ABC'));//false
+        console.log(Number.isNaN('ABC' - 1));//true
+        console.log(isNaN('ABC'));//true
+        //判断是不是整数
+        console.log(Number.isInteger(5.6));//false
+        console.log(Number.isInteger('5'));//false
+        //将字符串转换为整型  （可识别8进制和16进制）
+        console.log('------------');
+        console.log(Number.parseInt(5.6));//5
+        console.log(Number.parseInt('5.6'));//5
+        console.log(Number.parseInt('a5.6'));//NAN
+        console.log(Number.parseInt('5.6AA'));//5
+        //将字符串转换为浮点型 
+        console.log(Number.parseFloat(5)); 5
+        console.log(Number.parseFloat('5abc'));//5
+        console.log(Number.parseFloat(3.1));//3.1
+        console.log(Number.parseFloat(3.0));//3
+        console.log(Number.parseFloat('3.0abc'));//3
+        console.log(Number.parseFloat('d3ab6ec'));//NAN
+        console.log(Number.parseFloat('0xffffff'));//0  不能识别16进制 和8进制
 
-    //判断一个数到底是正数、负数、还是零
-    console.log(Math.sign(123));//1
-    console.log(Math.sign(-123));//-1
-    console.log(Math.sign(0));//0
-    console.log(Math.sign(+0));//0
-    console.log(Math.sign(-0));//-0
-    console.log(Math.sign(-0.6));//-1
+        //去除一个数的小数部分 ，返回整数部分
+        console.log(Math.trunc(4.14));//4
+        console.log(Math.trunc('4.14'));//4
+        console.log(Math.trunc('4.14a'));//NAN //////！
+        console.log(Math.trunc('a4.14a'));//NAN
 
+        //判断一个数到底是正数、负数、还是零
+        console.log(Math.sign(123));//1
+        console.log(Math.sign(-123));//-1
+        console.log(Math.sign(0));//0
+        console.log(Math.sign(+0));//0
+        console.log(Math.sign(-0));//-0
+        console.log(Math.sign(-0.6));//-1
 
+    //字符串的扩展
 
+        let oDiv = 'wrapper';
+        let str1 = '<div id="' + oDiv + '">div1</div>';
+        console.log(str1);
+        let str2 = `<div id="${oDiv}">div1</div>`; //``````  1的左边
+        console.log(str2);
+        let str3 = '<div id="container">div1'+
+            '<ul>'+
+                '<li>1</li>'+
+                '<li>2</li>'+
+                '<li>3</li>'+
+            '</ul>'+
+        '</div>';
+        console.log(str3);
+        let str4 =` <div id="container">div1
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>`;
+    console.log(str4);
 
+    console.log('--------------');
+    //includes() vs indexOf()
+    var str5='hello';
+    console.log(str5.indexOf('e'));//1
+    console.log(str5.indexOf('el'));//1
+    
+    console.log(str5.includes('e'));//true
+    console.log(str5.includes('ell'));//true
+    console.log(str5.includes('s'));//false
 
+    console.log('--------------');
+    //startsWith() vs  endsWith()
+    console.log(str5.startsWith('he'));//true
+    console.log(str5.startsWith('s'));//false
+    console.log(str5.startsWith('el'));//false
+    console.log(str5.startsWith('hello'));//true
+
+    console.log(str5.endsWith('he'));//false
+    console.log(str5.endsWith('s'));//false
+    console.log(str5.endsWith('lo'));//true
+    console.log(str5.endsWith('hello'));//true
+
+    console.log('----------------');
+    //padStart() vs padEnd()
+    console.log(str5.padStart(10,'lo'));//lololhello  凑够10个 在字符串前面加
+    console.log(str5.padStart('s'));//hello
+    console.log(str5.padStart(5,'s'));//hello
+    console.log(str5.padStart(3,'s'));//hello
+
+    console.log(str5.padEnd(3,'s'));//hello  
+    console.log(str5.padEnd(10,'s'));//hellosssss 凑够10个 在字符串后面加
+    
+    //repeat()
+    console.log(str5.repeat(2)); //重复同行 打印字符串 两次
     </script>
 </body>
+
 </html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>let</title>
 </head>
+
 <body>
     <li>1</li>
     <li>2</li>
@@ -15,21 +17,21 @@
 
         // let和var 的区别
         //var 可以重复声明一个变量
-        
-//1. let 不允许重复声明一个变量
+
+        //1. let 不允许重复声明一个变量
         // let str='hello';
         // let str='world';
         // console.log(str);//Identifier 'str' has already been declared；不允许重复声明一个变量
 
- //2.let不存在变量提升
+        //2.let不存在变量提升
         // console.log(str);//Cannot access 'str' before initialization:let不存在变量提升
         // var str='hello';
         // let str='hello';
 
-//3.let存在一个块级作用域的概念
-    //作用域：1.全局
-    // 2.局部（函数）作用域 
-    // 3.块级作用域：es6：一个{}就是一个块级作用域，let声明的变量只能在它声明的{}中获取
+        //3.let存在一个块级作用域的概念
+        //作用域：1.全局
+        // 2.局部（函数）作用域 
+        // 3.块级作用域：es6：一个{}就是一个块级作用域，let声明的变量只能在它声明的{}中获取
         //    if(true){
         //       let a=10;
         //    }
@@ -38,8 +40,8 @@
         //         console.log(i);
         // }
         // console.log(i);//报错
- //let的原理和闭包一样  
-  //闭包：外部函数声明了内部函数,内部函数中引用了外部函数的局部变量，这样外部函数执行完毕内存不释放
+        //let的原理和闭包一样  
+        //闭包：外部函数声明了内部函数,内部函数中引用了外部函数的局部变量，这样外部函数执行完毕内存不释放
         // let aLi=document.getElementsByTagName('li');
         // for(let i=0;i<aLi.length;i++){
         //     (function(){
@@ -51,16 +53,17 @@
 
         // }
 
-//4.暂时性死区：【在一个作用域内不允许同名变量进来】
-//，当用let去声明一个变量时，就会形成封闭的死区，只能在声明后调用 否则就会报错
-var a=88;
-function fn1(){        //先找函数内有没有定义的变量
-    console.log(a);   // 也会报错                   let  没有变量提升
-    let a=888;
- 
-}
-fn1();
+        //4.暂时性死区：【在一个作用域内不允许同名变量进来】
+        //，当用let去声明一个变量时，就会形成封闭的死区，只能在声明后调用 否则就会报错
+        var a = 88;
+        function fn1() {        //先找函数内有没有定义的变量
+            console.log(a);   // 也会报错                   let  没有变量提升
+            let a = 888;
+
+        }
+        fn1();
 // console.log(a);
     </script>
 </body>
+
 </html>

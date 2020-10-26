@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>解构赋值</title>
 </head>
+
 <body>
     <script>
-//1.数组解构
-        var arr1=[1,2,3];
+        //1.数组解构
+        var arr1 = [1, 2, 3];
 
-    //  var a0=arr1[0];
-    //  var a1=arr1[1];
-    //  var a2=arr1[2];
-    //  console.log(a0,a1,a2);
+        //  var a0=arr1[0];
+        //  var a1=arr1[1];
+        //  var a2=arr1[2];
+        //  console.log(a0,a1,a2);
 
-    // var [a0,a1,a2]=arr1;
-    // console.log(a0,a1,a2);
+        // var [a0,a1,a2]=arr1;
+        // console.log(a0,a1,a2);
 
-        let [a0,a1,a2,a3]=arr1;
-        console.log(a0,a1,a2,a3); //1  2 3 undefined
-//2.对象解构
+        let [a0, a1, a2, a3] = arr1;
+        console.log(a0, a1, a2, a3); //1  2 3 undefined
+        //2.对象解构
         // let obj1={
         //     name:'lisi',
         //     age:24,
@@ -33,33 +35,34 @@
         // console.log(y,x);//x undefined
         // console.log(name,age);//如果起了别名 原名就失效了
 
-//3.字符串解构
-        let str='hello'
-        let [s1,,s3,s4,s5]=str;
-        console.log(s1,s3,s4,s5);
-//4.函数参数解构
-        function fn1([x,y,z]){ 
-            console.log(x,y,z);
+        //3.字符串解构
+        let str = 'hello'
+        let [s1, , s3, s4, s5] = str;
+        console.log(s1, s3, s4, s5);
+        //4.函数参数解构
+        function fn1([x, y, z]) {
+            console.log(x, y, z);
 
         }
-        fn1([1,2,3]);  
+        fn1([1, 2, 3]);
 
-        function fn2([x=111,y=222,z=666]){//新的默认值设置方式
+        function fn2([x = 111, y = 222, z = 666]) {//新的默认值设置方式
             //原来设置默认值的方式
             // z=z||666;
-            console.log(x,y,z);
+            console.log(x, y, z);
         }
-        fn2([1,2,null]);//1 2 null //null 也算值
-        fn2([1,2,3,4]); //1 2 3 
+        fn2([1, 2, null]);//1 2 null //null 也算值
+        fn2([1, 2, 3, 4]); //1 2 3 
 
         //test
-        let x=666;
-        let y=888;
+        let x = 666;
+        let y = 888;
         // let temp1=x;
         //   x=y;
         //  y=temp1;
         //  console.log(x,y);
-        [x,y]=[y,x];
+        [x, y] = [y, x];
     </script>
 </body>
+
 </html>

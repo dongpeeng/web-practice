@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的扩展</title>
+</head>
+
+<body>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+
+    <script>
+        /* 1.创建数组的方式 */
+        let arr = [1, 2, 3];
+        let a1 = new Array(1, 2, 3, 4, 5);
+        let a2 = new Array(5);
+        console.log(a1);
+        console.log(a2);
+        /* 2.类数组=>数组 */
+        let aLi = document.getElementsByTagName('li');
+        let aaLi = [...aLi];
+        console.log(Array.from(aLi));
+        let jArr = {
+            '0': 'aa',
+            '1': 'bb',
+            '2': 'cc',
+            length: 3//必须写length  length是多少就放多少个元素
+        }
+        console.log(Array.from(jArr));
+
+        /* 3.将一组数 转换为数组 */
+        console.log(Array.of(2, 3, 4));
+        console.log(Array.of(6));
+
+        /* 4.copywithin() 会改变原数组
+            将指定位置成员复制到其他位置（会覆盖原有成员），然后返回当前数组，
+           开始覆盖的位置： target（必要):从该位置开始替换数据，如果为负值，表示倒数
+           选数： start（可选）：从位置开始读取数据，默认为0，如果为负值，表示从末尾开始计算
+            选数：end（可选）：到该位置前停止读取数据，默认等于数组长度，如果为负数，表示从未末开始计算
+         */
+
+        let a3 = [1, 2, 3, 4, 5, 6, 7, 8];
+        console.log(a3.copyWithin(2, 3, 6));//[1,2,4,5,6,6,7,8]
+
+        /* 5.arry.find() arr.findIndex() 用于找出第一个符合条件的数组成员 */
+
+        let a4 = a3.find(function (val, key, arr) {
+            return val > 5;
+        })
+        console.log(a4);//6 数值
+
+        let a5 = a3.findIndex(function (val, key, arr) {
+            return val > 5;
+        })
+        console.log(a5);//4 索引
+
+        /* 6. 数组的填充 arr.fill('xx',1,3)  会改变原数组*/
+        let a6 = ['a', 'b', 'c', 'd'];
+        console.log(a6.fill('xx', 1, 3));//['a','xx','xx']
+        console.log(a6.fill('yy', 1, 2));//['a','yy','xx']
+        console.log(a6.fill('oo', 0));//['oo','oo','oo']
+        console.log(a6.fill('lala'));//['lala','lala','lala']
+        /* 7.arr.includes() 数组是否包含给定的值*/
+        let a7 = [66, 77, 88, 99];
+        console.log(a7.includes(88));//true
+        console.log(a7.includes(666));//false
+        /* 8.数组的循环 */
+        let list = [{
+            name: 'a',
+            age: 18
+        },
+        {
+            name: 'b',
+            age: 22
+        },
+        {
+            name: 'c',
+            age: 24
+        },
+        {
+            name: 'd',
+            age: 25
+        },
+        {
+            name: 'e',
+            age: 27
+        }];
+        //1.for 循环
+        //2.for...of
+        for (let p of list) {
+            console.log(p);
+        }
+        //value()
+        for (let value of list.values()) {
+            console.log(value);
+        }
+        //keys()
+        for (let key of list.keys()) {
+            console.log(key);
+        }
+        //entries()
+        for (let [index, value] of list.entries()) {
+            console.log(index, value);
+        }
+        //3.foreach 单纯的遍历 没有返回值  改变了数组中对象的属性值
+        list.forEach(function (value, index, arr) {
+            value.age=value.age+1;
+            console.log(value, index, arr);
+        })
+        console.log(list);//改变了数组中对象的属性值
+        //4.map
+        let list1 =list.map(function(p,index,arr){
+            if(p.age>27){
+                return p.name;
+            }
+        })
+        console.log(list1);//[undefined, undefined, undefined, undefined, "e"]
+
+        //4.filter
+
+        let list2 =list.filter(function(obj,index){
+            return obj.age<25;
+        })
+        console.log(list2);
+    </script>
+</body>
+
+</html>
