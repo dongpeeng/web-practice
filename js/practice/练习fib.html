@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>练习fib</title>
     <style>
-        span{
+        span {
             width: 150px;
             display: inline-block;
         }
+
         /* pre{
             display: block;
             font-family: monospace;
@@ -17,39 +19,41 @@
         } */
     </style>
 </head>
+
 <body>
 
-        <script>
-          
-            var sum=new Array();
-            var k=0;
-            
-            function fib(n){
-                
-                if(n<2)
+    <script>
+
+        var sum = new Array();
+        var k = 0;
+
+        function fib(n) {
+
+            if (n < 2)
                 return 1;
-                else
-                 return fib(n-1)+fib(n-2);
+            else
+                return fib(n - 1) + fib(n - 2);
+        }
+        for (var i = 40; i >= 1; i--) {
+            sum.push(fib(i));
+
+
+            if (k % 6 == 0) {
+                document.write('<br>');
+
             }
-            for(var i=40;i>=1;i--){
-               sum.push(fib(i));
-            
-               
-                if(k%6==0){
-                    document.write('<br>');
-                   
-                }  
-                k++;
-                document.write('<span>'+sum[40-i]+'</span>');   
-            }
+            k++;
+            document.write('<span>' + sum[40 - i] + '</span>');
+        }
         //    var arr= sum.split(" ");
-            
 
-            
-        </script>
- 
-  
 
-   
+
+    </script>
+
+
+
+
 </body>
+
 </html>

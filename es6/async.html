@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+<body>
+    <!-- 
+        async 就是generator的语法糖
+     -->
+    <script>
+        //async函数调用完会返回一个promise对象
+         async function fn1(){
+             return 666
+         }
+         fn1().then(val=>console.log(val)).catch(error=>console.log(error))
+        //2. await 后面一般是promise对象
+         async function fn2(){
+             try {
+                console.log('准备发送请求1');
+                await request1();
+             } catch (error) {
+                 console.log(error);
+             }
+
+
+             console.log('准备发送请求2');
+            await request2();
+            console.log('请求结束');
+         }
+         function request1(){
+             return new Promise((resolve,reject)=>{
+                 setTimeout(() => {
+                    // console.log('请求1成功'); 
+                    reject('请求1失败');
+                 }, 1500);
+             })
+            //  return p1
+         }
+         function request2(){
+             return new Promise((resolve,reject)=>{
+                 setTimeout(() => {
+                    console.log('请求2成功'); 
+                    resolve('ok');
+                 }, 1500);
+             })
+            
+         }
+         fn2();
+
+         /* proxy */
+         let obj1={
+             name:'lisi',
+             age:23
+         }
+        //  let p1 =new Proxy(obj1,{
+        //      //在获取值之前做的
+        //      get(){
+        //          console.log('get');
+        //      },
+        //      //在改变值之前做的 一定要有return 否则值不会改变
+        //      set(){
+        //          console.log('set');
+        //      }
+        //  })
+
+        
+        let p1 =new Proxy(obj1,{
+            get(target,key,property){
+                console.log('get',target,key,property);
+                return target[key];
+            },
+            set(target,key,value,resiver){
+                console.log('set',target,key,value,resiver);
+                return target[key]=value;
+
+            }
+        })
+         p1.name='wangwu';// set 对象 属性名 属性值 对象 name wangwu
+         console.log(p1.name);//wangwu   先get 如果不return 结果undefined
+         console.log(obj1.name);//wangwu
+         console.log(p1);
+         console.log(obj1);
+          
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+</head>
+<body>
+    <script>
+        //回调地狱
+        let p1 =new Promise((resolve,reject)=>{
+            console.log('请求1 ing...');
+            setTimeout(()=>{
+                let flag=false;
+                if (flag){
+                    resolve();
+                }
+                else{
+                    reject();
+                }
+            },1000);
+        }).then(()=>{
+            console.log('请求1成功');
+            return new Promise((resolve,reject)=>{
+                console.log('请求2 ing...');
+                setTimeout(()=>{
+                    let flag=true;
+                    if (flag){
+                        resolve();
+                    }
+                    else{
+                        reject();
+                    }
+                },1000);
+            })
+            },()=>{
+                console.log('请求1失败');
+                return new Promise(()=>{});
+            }).then(()=>{
+                console.log('请求2成功');
+            }).catch(()=>{
+                console.log('请求2失败');
+            })
+ /* 
+   fuction getData(url){
+       return new Promise((resolve,reject)=>{
+           $.get(url,fuction(res){
+               resolve(res);
+           })
+       })
+   }
+   getData('./data/a.json').then((res) =>{
+       console.log(res);
+       return getData('./data/b.json');
+   }).then((res)=>{
+       console.log(res);
+       return getData('data/c.json');
+   }).then((res)=>{
+       console.log(res);
+   })
+ */
+            let p3=new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log('p3 ok');
+                    resolve();
+                },1000)
+            })
+            let p4=new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log('p4 ok');
+                    resolve();
+                },500)
+            })
+            let p5=new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    console.log('p5 ok');
+                    resolve();
+                },2000)
+            })
+       Promise.all([p3,p4,p5]).then(()=>{
+           console.log('okokok');
+       })
+       Promise.race([p3,p4,p5]).then(()=>{
+           console.log('666');
+       })
+    </script>
+</body>
+</html>

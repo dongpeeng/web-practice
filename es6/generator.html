@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator</title>
+</head>
+<body>
+    <script>
+        function* fn1() {
+            //第一次next（）后才执行函数的内容
+            console.log('start');
+            //代码遇到yield 就会停止执行（yield后面的内容会执行）
+            yield
+            console.log('end');
+        }
+        // setTimeout(() => {
+        //     console.log(111);
+        // }, 1000);
+        // console.log('aaa');
+        // setTimeout(() => {
+        //     console.log(222);
+        // }, 1000);
+        // console.log('bbb');
+
+        let f1=fn1();
+        f1.next();
+        f1.next();
+    
+        function* fn2() {
+           console.log('开始发送请求1');  
+           yield request(2000);
+           console.log('请求结束');
+        }
+
+       let f2=fn2();//会返回一个指针对象，需要调用next（）继续执行
+       f2.next();
+       function request (time){
+           setTimeout(()=>{
+               console.log('请求成功');
+              f2.next();
+           },time);
+       }
+
+        console.log(f2.next());//{value: undefined, done: true} value:yield后面表达式的返回结果，
+                              //done表示这个函数有没有执行完
+        function* fn3(){
+            console.log('开始发送请求1');
+            yield request1();
+            console.log('开始发送请求2');
+            yield request2(); 
+            console.log('请求结束');
+        }
+        function request1(){
+            setTimeout(() => {
+                console.log('请求1成功');
+                console.log(f3.next());
+            }, 2000);
+            return '请求1成功'
+        }   
+        function request2(){
+            setTimeout(() => {
+                console.log('请求2成功');
+                console.log(f3.next());
+            }, 1000);
+            return '请求2成功'
+        }  
+        let f3 =fn3();
+       console.log(f3.next());                  
+    </script>
+</body>
+</html>

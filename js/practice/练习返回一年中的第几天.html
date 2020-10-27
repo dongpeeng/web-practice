@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>一年中的第几天</title>
     <style>
-        div{
+        div {
             width: 200px;
             display: inline-block;
         }
     </style>
 </head>
+
 <body>
     <div>
-        8.	设计一个函数DayOfYear(d)，它接收一个日期参数d，返回一个该日期是所在年份的第几天，如DayOfYear(2000,2,8)的返回值是39.
-                （ 提示：①定义一个数组months=new Array（31,28,31,30,31,30,31,31,30,31，30,31）记录每个月少天：
-                ②定义一个辅助函数IsLeapYear(y)判定某个年份是否闰年，以确定2月份的天数是28还是29。）
+        8. 设计一个函数DayOfYear(d)，它接收一个日期参数d，返回一个该日期是所在年份的第几天，如DayOfYear(2000,2,8)的返回值是39.
+        （ 提示：①定义一个数组months=new Array（31,28,31,30,31,30,31,31,30,31，30,31）记录每个月少天：
+        ②定义一个辅助函数IsLeapYear(y)判定某个年份是否闰年，以确定2月份的天数是28还是29。）
 
     </div>
     <script>
-       var dd= new Date();
+        var dd = new Date();
 
 
-console.log(dd.getDate());
-console.log(dd.getMonth());  //0 1 2 4 5 6 7 8 9 10 11   返回的当前月数减1  //数组下标9
-console.log(dd.getFullYear());
+        console.log(dd.getDate());
+        console.log(dd.getMonth());  //0 1 2 4 5 6 7 8 9 10 11   返回的当前月数减1  //数组下标9
+        console.log(dd.getFullYear());
 
-        
-        function IsLeapYear(y){
-            if((y%4==0&&y%100!=0) || y%400==0)
-            return true;
+
+        function IsLeapYear(y) {
+            if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)
+                return true;
             else
-             return false;
-            
-        }
-        function DayOfYear(d) {  
-                  var sum=0;             
-                  var months=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
-              if(IsLeapYear(dd.getFullYear()))
-                    months[1]=29;
+                return false;
 
-                    for(var i=0;i<dd.getMonth();i++){
-                        sum += months[i];
-                    }
-                    return sum+d;
-                    
         }
-       alert('今天是本年的第'+DayOfYear(dd.getDate())+'天');
+        function DayOfYear(d) {
+            var sum = 0;
+            var months = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+            if (IsLeapYear(dd.getFullYear()))
+                months[1] = 29;
+
+            for (var i = 0; i < dd.getMonth(); i++) {
+                sum += months[i];
+            }
+            return sum + d;
+
+        }
+        alert('今天是本年的第' + DayOfYear(dd.getDate()) + '天');
 
     </script>
 </body>
+
 </html>

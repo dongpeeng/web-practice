@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+        /* 
+          类：是具有相同属性和方法的对象的集合
+               1.构造函数名字要大写（为了和普通函数区分开）
+               2.属性写在构造函数里
+               3.方法写到原型里
+        */
+       function Person(name,age){
+           this.name=name;
+           this.age=age;
+       }
+       
+       /* 
+       原型：原型被设计出来的目的就是为了实现继承的功能，在原型下面添加的所有属性和方法都会被所有实例化对象所继承
+       当访问一个对象的属性或者方法的时候，会先去这个对象的构造函数中找有没有这个方法和属性
+       有 => 就返回找到的值
+       没有 => 就到这个对象的原型链中去找有没有那个属性和方法
+       没有 => 就到他的上一级（也就是他的父亲）的构造函数和原型中找
+       => Object
+       没有=>属性 ；undefined
+       方法 ：xx is not a function    
+       */
+      /* 
+      为什么属性不能放在原型里?
+      1.如果属性的值还是一个对象的话，那可能出现原型的属性的值被篡改
+      2.不能通过传参给属性赋值
+      */
+     Person.prototype.sleep=function(){
+         console.log(this.name+' is sleeping'); 
+     }
+     Person.prototype.gender='male'; 
+        Person.prototype.brother={
+            name:'lisi',
+            age:32
+        };
+        let p1 =new Person('p1',23);
+        let p2 =new Person('p2',25);
+
+        p1.gender='female';  //赋值  p1添加一个gender属性
+        console.log(p1.gender);//female //查找 
+        console.log(p2.gender);//male  //没有gender属性  用原型里gender属性
+
+        p1.brother.age=55; //p1没有brother属性 然后就用原型里的broher属性
+        console.log(p2.brother.age);//55  ：原型里的brother.age属性被修改了
+        console.log(p1);
+        /* 
+          继承：
+             1.在子类的构造函数中，咬用call（）继承父类的属性
+             2。子类的prototy=父类的实例化对象，用来继承父类中的方法
+             3。让子类的constructor指回子类
+
+        */
+
+        function Student(name,age,grade){
+               //this => s1
+               Person.call(this,name,age);//改变Person的this指向，使其指向Student的实例化对象
+               this.grade=grade;
+        }
+        Student.prototype=new Person();//获取到Person里的所有方法  //prototype必须是函数里才有 对象里没有  constructor被覆盖？
+        Student.prototype.constructor=Student;  //将Stdudent作为构造函数的方式加进去   相当于 将构造函数加在Student类的原型里 
+                                                //即 ：将构造函数的指向 从person调回student
+
+        // Student.prototype= Person.prototype;//给Student添加的方法也会添加到Person中
+
+        Student.prototype.code=function(){
+            console.log(this.name+' is coding...');
+        }
+        console.log(Student.prototype);
+        let s1=new Student('wangwu',23,'20级');
+        console.log(s1);
+        console.log(s1.constructor==Student);//true
+        console.log(p1.constructor==Person);//true
+        s1.sleep();
+        s1.code();
+        //静态方法 static fn（）{} 不能通过对象.方法（）调用，只能通过类名.方法（）调用 例如：Array.of(),objcet.is()
+        //继承  
+        class Student1 extends Person{
+            constructor(...param){
+                //继承父类的属性
+                super(...param);
+                this.grade=param[2];
+            }
+            code(){
+                console.log(this.name+' is coding...');
+            }
+        }
+        let s2=new Student1('wangwang',35,'19级');
+        s2.sleep();
+        s2.code();
+    </script>
+</body>
+</html>
