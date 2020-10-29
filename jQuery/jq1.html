@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq1</title>
+
+
+</head>
+<body>
+    <div id="div1">div1</div>
+    <button id="btn1">点我</button>
+    <img src="https://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E7%8C%AB&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&hd=&latest=&copyright=&cs=2478654573,3194210932&os=3115204669,424282467&simid=3546025992,350435759&pn=2&rn=1&di=129910&ln=1007&fr=&fmq=1603965163598_R&ic=&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=0,0&istype=2&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161024%2F1ac77cb95e7d4a2585d7fea91f0fabcd_th.jpeg&rpstart=0&rpnum=0&adpicid=0&force=undefined" alt="">
+    <img src="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E7%8C%AB&step_word=&hs=0&pn=6&spn=0&di=47520&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=3363295869%2C2467511306&os=892371676%2C71334739&simid=4203536407%2C592943110&adpicid=0&lpn=0&ln=1007&fr=&fmq=1603965239088_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fa0.att.hudong.com%2F30%2F29%2F01300000201438121627296084016.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fp7rtwg_z%26e3Bkwthj_z%26e3Bv54AzdH3Ftrw1AzdH3Fwa_na_dl_a8naaaaada89nb8d8md0dlmab9a8m_3r2_z%26e3Bip4s&gsm=5&rpstart=0&rpnum=0&islist=&querylist=&force=undefined" alt="">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+         //文档就绪函数：等待整个文档中的所有dom结构加载完毕再执行
+        // jQuery(js query)
+        //window.load :等待整个文档中的所有资源文件加载完毕才执行
+
+
+        //    $(document).ready(function(){
+        //        var oBtn =document.getElementById('btn1');
+        //        oBtn.onclick=function(){
+        //            alert('haha');
+        //        }
+        //    });
+           window.onload=function(){
+               var oBtn =document.getElementById('btn1');
+               oBtn.onclick=function(){
+                   alert('haha');
+               }
+           };
+           //直接运行代码
+           $(document).ready(function(){
+               console.log(333);
+           })
+           $(document).ready(function(){
+               console.log(444  );
+           })
+        //    $(function(){console.log(444);});
+
+           //window.onload 等图片加载后才运行
+        //    window.onload=function(){
+        //        console.log(111);
+        //    }
+        //    window.onload=function(){
+        //        console.log(222);
+        //    }
+
+           //链式操作
+           var oDiv1=document.getElementById('div1');//得到dom对象
+           $(function(){
+               $('#div1').click(function(){ //得到jQuery对象
+                   alert('hehe');
+               }).css({width:'200px',height:'200px',background:'#cccccc',corlor:'black'})
+               .append('<h1 id="h1">这是h1</h1>')
+               .css({color:'green'})//全加
+               .mouseover(function(){
+                   console.log(' over...');
+               });
+           });
+           var $div2=$('#div1');//jq对象
+
+           //jq对象->原生dom对象
+           var oDiv3=$('#div1')[0]; //变成原生dom对象
+
+           console.log(oDiv1==oDiv3);
+
+           //原生dom对象 ->jq对象
+           var $div4=$(oDiv1);
+
+           console.log(oDiv3);
+           console.log($div4);
+
+           console.log(oDiv3==$div4);
+
+
+        </script>
+    <script>
+
+    </script>
+</body>
+</html>
