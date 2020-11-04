@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq动画</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background:#ff0000;
+    
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">淡出</button>
+    <button id="btn2">淡入</button>
+    <button id="btn3">动画完成后的回调</button>
+    <button id="btn4">折叠</button>
+    <button id="btn5">展开</button>
+    <button id="btn6">fadeto</button>
+    <button id="btn7">hide</button>
+    <button id="btn8">show</button>
+    <button id="btn9">animate</button>
+    <div id="div1"></div>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#btn1').click(function(){
+                $('#div1').fadeOut(2000);
+            })
+            $('#btn2').click(function(){
+                $('#div1').fadeIn(2000);
+            })
+            $('#btn3').click(function(){
+          //动画是异步的
+            //     $('#div1').fadeOut(2000);
+            //     console.log('动画已完成...');
+          //同步
+            // $('#div1').fadeOut(2000,function(){
+            //     console.log('动画已完成...');
+            // });
+            var $div=$('#div1');//将选中的元素进行缓存！！！
+                $div.fadeOut(2000,function(){
+                    $div.fadeIn(2000,function(){
+                        // $div.height(0);
+                        // $div.slideUp(2000);
+                        // $div.slideDown(2000);
+                        $div.slideToggle(2000);
+                    });
+                });
+            })
+            $('#btn4').click(function(){
+                $('#div1').slideUp(2000);
+            })
+            $('#btn5').click(function(){
+                $('#div1').slideDown(2000);
+            })
+            $('#btn6').click(function(){
+                $('#div1').fadeTo(2000,0.5);
+            })
+            $('#btn7').click(function(){
+                $('#div1').hide(1000);
+            })
+            $('#btn8').click(function(){
+                $('#div1').show(1000);
+            })
+            $('#btn9').click(function(){
+                $('#div1').animate({
+                    opacity:0.2,
+                    left:"+50"
+                },2000,function(){
+                    $('#div1').animate({
+                        opacity:1,
+                        left:"0"
+                    },2000)
+                })
+            })
+            //callback:回调
+
+        });
+        
+    </script>
+</body>
+</html>

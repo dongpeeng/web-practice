@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq遍历</title>
+</head>
+<body>
+    <ul id="ul1">
+        <li>item 1
+            <span>span</span>
+        </li>
+        <li class="aa">item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+    </ul>
+    <div id="div1">
+        div1
+    </div>
+    <h1 id="h11">h1</h1>
+    <p1 id="p1">p1</p1>
+    <p2 id="p2">p2</p2>
+    <p3 id="p3">p3</p3>
+    <span id="span">span1</span>
+    <div id="a">
+        <div id="b">
+            <div id="c"></div>
+        </div>
+    </div>
+    <div id="div3">div3</div>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            // $('#ul1 li:eq(1)').css('background','green')//快一点
+            // $('#ul1 li').eq(1).css('background','green')
+            $('#ul1 li').first().css('background','red')
+            $('#ul1 li').filter('.aa').css('background','green')
+            $('#ul1 li').filter(function(index){
+                        return index%2==0;
+            }).css('background','green')
+            $('#div1').nextUntil('#p2').css('background','green')
+            $('#ul1').children().css('border','2px solid')
+            $('#ul1').find('span').css('border','2px solid #000')
+            $('#ul1 li').each(function(index,elem){
+                console.log(index+':'+elem.innerHTML);
+                console.log(index+':'+this.innerHTML);
+                console.log($(this).innerHTML);//undefined
+                console.log($(this).html());//content
+            })
+            $('#div3')
+            .append('<h1>这是一个h1</h1>')
+            .append('<span>这是一个span</span>')
+            .children('h1')
+            .css('background','green')
+            .end()
+            .css('background','red');
+        })
+    </script>
+</body>
+</html>

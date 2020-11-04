@@ -15,7 +15,9 @@
             position: absolute;
             left: 50px;
             top: 50px;
-            border: 5px solid #000000;
+            /* border: 5px solid #000000; */
+            padding: 10px;
+  
         }
         #div2{
             width: 200px;
@@ -24,6 +26,16 @@
             position: relative;
             left: 100px;
             top: 100px;
+        }
+        .aa{
+            border: 5px solid #000000;
+        }
+        li{
+            width: 400px;
+            background-color: red;
+        }
+        li:first-child{
+            width: 200px;
         }
     </style>
 </head>
@@ -78,8 +90,10 @@
         <li>2</li>
         <li></li>
     </ul>
-    <input type="hidden" name="xx" value="yy" >
-    <div id="div2">
+    <input type="hidden" name="xx"   value="yy" >
+    <input type="checkbox" name="xx" id="ipt"  value="yy" >
+
+    <div class="abc" id="div2" data-userID="123">
         <div id="div1">1</div>
     </div>
 
@@ -111,12 +125,48 @@
                 //         top:100
                 //     }
                 // )
+                //margin 补白  padding 填充
               console.log( $('#div1').offset());//相对于文档（当前窗口）
               console.log( $('#div1').position());//相对于已定位的父元素的
               console.log( $('#div1').innerWidth());
-              
-          
+              console.log( $('#div1').outerWidth());
+            $('#div1').click(function(){
+                $(this).toggleClass('aa');
+                console.log(this);//原生dom对象
+                console.log($(this));//jq对象
+            })
         });
+        // console.log($('#ul1 li').css({width:100}));
+        console.log($('#ul1 li').css('width'));//设置全部设置  获取 只能获取第一个
+
+     console.log( $('#ipt').val());//可获取 可修改
+     console.log( $('#ipt').attr('value'));
+     
+    console.log($('#div2').attr('class')); 
+        
+    // console.log($('#div2').attr('aa','bb')); 
+    // console.log($('#div2').prop('aa','bb')); 
+
+    //原生dom的attribute 和property的区别
+    //attribute :dom 属性，放在dom结构中
+    //property：对象属性，放在内存中
+
+    var oDiv2=document.getElementById('div2')
+    oDiv2.aa='bb'; //property对象属性
+    console.log(oDiv2.aa);
+
+     oDiv2.setAttribute('cc','dd');//attribute :dom 属性
+     console.log(oDiv2.getAttribute('cc'));
+
+     console.log(oDiv2.getAttribute('data-userID'));
+
+     var oIpt=document.getElementById('ipt');
+    //  oIpt.checked='checked';
+    //  oIpt.checked=false;
+    // $('#ipt').attr('checked',false);
+    // $('#ipt').prop('checked',true);
+     
+
     </script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">div1</div>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        var oDiv1=document.getElementById('div1');
+        //  var oH1= document.createElement('h1');
+        //  oH1.innerHTML='这是一个h1';
+        //  oDiv1.appendChild(oH1);
+        //  oDiv1.appendChild('<h1>这是一个h1</h1>');
+       $('#div1').append('<h1>这是一个h1</h1>').css('background','red');//链式操作的对象是第一个$ 给div1加css
+       $('<h1>这是一个h1</h1>').appendTo($('#div1')).css('background','green');//给h1加css   
+    //    $('#div1').html('<span>这是一个span</span>');//结构替代 
+    //    $('#div1').text('<span>这是一个span</span>');//文本替代 div1里的所有孩子节点
+    $('#div1').wrap('<div>');//在div1的外面套一个div
+        $('#div1').after('<h1>sss</h1>')//在div2的后面插入 兄弟元素h1
+        // $('#div1').remove();//把自己删除   .empty() 清空子元素
+        // function remove(elem){   //dom 的元素自我删除
+        //     elem.parentNode.removeChild(elem);
+        // }
+        // remove(oDiv1); 
+    </script>
+</body>
+</html>

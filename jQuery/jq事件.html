@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq事件</title>
+    <style>
+        #ul1{
+            height: 400px;
+          
+            background-color: #cccccc;
+        }
+        li{
+          
+           background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">点我</button>
+    <button id="btn2">trigger</button>
+    <button id="btn3">triggerHandler</button>
+    <form action="https://www.baidu.com" id="myform">
+        <p><input type="text" value="abc" id="username"></p>
+        <p><input type="password"></p>
+        <p><button type="submit" id="btn-submit">提交</button></p>
+    </form>
+  
+    <ul id="ul1">
+        <li>item 1</li>
+        <li class="aa">item 2</li>
+        <li class="aa">item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+    </ul>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        // $(function(){
+        //     var oBtn=document.getElementById('btn1')
+        //     oBtn.addEventListener('click',function(e){
+        //         console.log('haha');
+        //     },false);
+        //     $('#btn1').click(function(){
+        //         console.log('haha');
+        //     });
+        //     $('#btn1').on('click',function(){
+        //         console.log('haha');
+        //     });
+        // })
+        var oUl1=document.getElementById('ul1')
+        // var liClickHandler=function(){
+        //     console.log(this.innerHTML);
+        // }
+        // var aLi=oUl1.getElementsByTagName('li')
+        // for(var i=0;i<aLi.length;i++){
+        //     aLi[i].addEventListener('click',liClickHandler,false)
+        // }
+
+        //事件委托
+        //1.子元素过多事件绑定问题
+        //2.后生成元素的事件绑定问题
+        // oUl1.onclick=function(e){
+        //     e=e||window.event;
+        //     var target = e.target||e.srcElement;
+        //   if(target.tagName=='LI'){
+        //       console.log(target.innerHTML);
+        //   }
+        // }
+        $('#ul1').on('click',':contains("4")',function(e){
+            // if(e.target.tagName=='LI'){
+                console.log(e.target.innerHTML);
+            // }
+        })
+        // $(window).on('resize',function(){
+        //     console.log(Math.random());
+        // })
+        // $(window).on('scroll',function(){
+        //     console.log(Math.random());
+        // })
+        $('#btn1').one('click',function(){
+            console.log(Math.random());
+        })
+
+        $('#username').on('focus',function(e){
+            console.log(this.value);
+            // e.stopPropagation();//阻止事件冒泡
+        })
+        $('#myform').on('submit',function(e){
+            console.log('haha');
+            e.preventDefault();//阻止事件默认行为
+            
+        })
+
+        $('#btn2').on('click',function(){
+            // $('#btn1').trigger('click');
+            $('#username').trigger('focus');
+            // $('#myform').trigger('submit')
+        })
+        $('#btn3').on('click',function(e){
+            // $('#username').triggerHandler('focus');//triggerHandler 不会执行浏览器默认行为 如：将鼠标光标自动focus到输入框上 只是调用focus的附带函数
+            $('#myform').triggerHandler('submit')
+            console.log(e.pageX,e.pageY);
+            console.log(e.type);
+            console.log(e.which);//1 2 3
+        })
+        //mouseover有事件冒泡 mouseenter没有事件冒泡
+        //focus有事件冒泡 focusin没有事件冒泡
+    </script>
+</body>
+</html>
