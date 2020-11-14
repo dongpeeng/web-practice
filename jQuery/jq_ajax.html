@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq_ajax</title>
+        <!-- 服务器向客户端返回的数据格式
+    1.text
+     2.xml
+    3.json  json（js object notation ）格式数据：
+       [
+        {id:11,name:'lisi',gender:'男'}
+        {id:22,name:'wangwu',gender:'女'}
+       ]
+-->
+    <style>
+#tbl ,#tbl td{
+ 
+    border: 2px solid #cccccc;
+} 
+#tbl{
+    width: 300px;
+    margin: 50px auto;
+    border-collapse: collapse;
+}
+    </style>
+</head>
+<body>
+    <button id="btn-load">加载数据</button>
+    <table id="tbl">
+        <tr>
+            <td>编号</td>
+            <td>用户名</td>
+            <td>性别</td>
+        </tr>
+    </table>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn-load").on('click',function(){
+                //get获取函数
+                $.get('server.php',function(res){
+                        console.log(res);
+                        for(var i=0;i<res.length;i++){
+                              var user=res[i];
+                              $('#tbl').append('<tr><td>'+user.id+'</td><td>'+user.name+'</td><td>'+user.gender+'</td></tr>');
+                        }
+                },'json');
+                //post提交函数
+                $.post('server.php',{
+                    username:'haha',
+                    age:13
+                },function(){
+                    //..
+                })
+                $.ajax({
+                    url:'server.php',
+                    method:'post',
+                    data:{
+                        username:'haha',
+                        age:13
+                    },
+                    success:function(){
+
+                    },
+                    error:function(){
+
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
