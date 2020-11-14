@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{ margin: 0; padding: 0;}
+        #box{
+            width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        ul{
+            overflow: hidden;
+            list-style: none;
+            position: relative;
+            left: 0;
+        }
+        li{
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            float: left;
+            color: #fff;
+            font-size: 30px;
+            text-align: center;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <div id="box">
+        <ul>
+            <li style="background: red">1</li>
+            <li style="background: yellow">2</li>
+            <li style="background: blue">3</li>
+        </ul>
+    </div>
+    <input type="button" value="左边" id="btn1">
+    <input type="button" value="右边" id="btn2">
+
+    <script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.js"></script>
+    <script>
+        window.onload = function(){
+
+            var ul = document.querySelector('ul');
+            var btn1 = document.querySelector('#btn1');
+            var btn2 = document.querySelector('#btn2');
+
+            ul.style.width = '1200px'
+            ul.innerHTML += ul.innerHTML; 
+
+            
+            btn1.onclick = function(){
+
+                if ( ul.offsetLeft == 0 ) {
+                    ul.style.left = '-600px';
+                }
+                               
+                var num = ul.offsetLeft + 200;
+
+                $("ul").animate({left: num}, "slow");
+            }
+
+            btn2.onclick = function(){
+
+                if ( ul.offsetLeft == -600 ) {
+                    ul.style.left = 0;
+                }
+
+                var num = ul.offsetLeft - 200;
+
+                $("ul").animate({left: num}, "slow");
+            }
+        }
+    </script>
+</body>
+</html>

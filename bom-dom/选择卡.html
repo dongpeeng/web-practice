@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #container {
+            width: 300px;
+            margin: 50px auto 0;
+        }
+
+        #menu {
+            height: 40px;
+            border-bottom: solid black 2px;
+
+        }
+
+        #menu>li {
+            float: left;
+            width: 100px;
+            height: 100%;
+            line-height: 40px;
+            background-color: #cccccc;
+            text-align: center;
+        }
+
+        #menu>li.active {
+            background: black;
+            color: #ffffff;
+
+        }
+
+        #content {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        #content>div {
+            background: #000000;
+            color: #ffffff;
+            width: 100%;
+            height: 300px;
+            /* display: none; */
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: ease 1s opacity;
+        }
+
+        #content>div:first-child {
+            /* display: block; */
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="menu">
+            <li index="0" class="active">菜单1</li>
+            <li index="1">菜单2</li>
+            <li index="2">菜单3</li>
+        </ul>
+        <div id="content">
+            <div>内容1111111</div>
+            <div>内容2222222</div>
+            <div>内容3333333</div>
+        </div>
+    </div>
+    <script>
+        var oContainer = document.getElementById('container');
+        var oMenu = document.getElementById('menu');
+        var aLi = oMenu.getElementsByTagName('li');
+
+        var oContent = document.getElementById('content');
+        var aDiv = oContent.getElementsByTagName('div');
+
+        // for(var i=0;i<aLi.length;i++){
+        //     aLi[i].index=i;
+        //     aLi[i].onclick= function(){
+        //         //清空li的class
+        //         for(var j=0;j<aLi.length;j++){
+        //             aLi[j].className='';
+        //             aDiv[j].style.display='none';
+        //         }
+        //         //给选中的设置样式
+        //         aLi[this.index].className='active';
+        //         aDiv[this.index].style.display='block';
+        //     }
+        // }
+
+        oMenu.onclick = function (e) {
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            // aLi[i].index=i;
+            if (target.tagName == 'LI') {//li大写！
+                //清空li的class
+                for (var j = 0; j < aLi.length; j++) {
+                    aLi[j].className = '';
+                    aDiv[j].style.opacity = 0;
+                }
+                //获取自定义dom属性
+                var index = target.getAttribute('index');
+                console.log(index);
+                aLi[index].className = 'active'
+                aDiv[index].style.opacity = 1;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 520px;
+            height: 280px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #img-box {
+            width: calc(520px * 15);
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: ease 1s left;
+
+
+        }
+
+        #img-box>img {
+            float: left;
+            /* display: none; */
+        }
+
+        #img-box>img:first-child {
+            display: block;
+        }
+
+        #tab {
+            display: flex;
+            width: 120px;
+            justify-content: space-between;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        #tab>li {
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            text-align: center;
+            box-sizing: content-box;
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            font-size: 10px;
+
+
+        }
+
+        #tab>li.active {
+            background-color: rgba(255, 0, 0, 0.7);
+        }
+
+        .btn {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 35px;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            position: absolute;
+            top: 50%;
+            margin-top: 50%-50px;
+
+        }
+
+        #prev {
+            left: 0;
+        }
+
+        #next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="img-box">
+            <img src="1.jpg" alt="">
+            <img src="2.jpg" alt="">
+            <img src="3.jpg" alt="">
+            <img src="4.jpg" alt="">
+            <img src="5.jpg" alt="">
+        </div>
+        <ul id="tab">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <span id="prev" class="btn">&lt;</span>
+        <span id="next" class="btn">&gt;</span>
+    </div>
+    <script src="../jQuery/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="轮播move.js"></script>
+    <script>
+        var oDiv1 = document.getElementById('container');
+        var oImgbox = document.getElementById('img-box');
+        var $imgbox = $(oImgbox);
+
+        var aImg = oImgbox.getElementsByTagName('img');
+        var $img = $(aImg);
+
+        var oUl = document.getElementById('tab');
+        var aLi = oUl.getElementsByTagName('li');
+        var $ul = $(oUl);
+        var $li = $(aLi);
+
+        var prev = document.getElementById('prev');
+        var next = document.getElementById('next');
+// $(document).ready(function(){
+//     $li.last().hover(function(){
+//         $li.css('background-color', 'rgba(0, 0, 0, 0.4)');
+//     },function(){
+//     $li.last().mouseover().css("background-color","rgba(0, 0, 0, 0.6)");
+//       });
+// })
+        // console.log($imgbox.get($img,'src'));
+        console.log(aLi);
+        console.log($li);
+        var currentIndex = 0;
+
+        function change() {
+            for (var j = 0; j < $li.length; j++) {
+                $li[j].className = '';
+            }
+            $li[currentIndex].className = 'active';
+            
+            $imgbox.css('left', -520 * currentIndex + 'px');
+        }
+
+        for (var i = 0; i < $li.length; i++) {
+            $li[i].index = i;
+            $li[i].onclick = function () {
+                currentIndex = this.index;
+                // move(oImgbox,"left",20,-currentIndex*aImg[0].offsetWidth,function(){
+                //         change();
+                //     });  
+                change();
+            }
+        }
+        var k = 0;
+        next.onclick = function () {
+            // console.log($li);
+
+            currentIndex++;
+            
+            if (currentIndex>4) {
+                // $imgbox.append(aImg[0]).css('transition', 'ease 1s left');
+                $imgbox.append(aImg[0]).css('transition','none');
+                // $imgbox.first().css('transition','ease 1s left');
+                currentIndex = 4;  
+                for (var j = 0; j < $li.length; j++) {
+                $li[j].className = '';
+                currentIndex--;
+                if(currentIndex==-1){
+                    currentIndex=0;
+                }
+                console.log(currentIndex);
+                 }
+            $li[currentIndex].className = 'active';     
+            }
+            change();
+
+        }
+        prev.onclick = function () {
+            currentIndex--;
+            if (currentIndex < 0) {
+                // $imgbox.prepend(aImg[4]).css('transition', 'ease 1s left');
+                $imgbox.prepend(aImg[4]).css('transition','none');
+                currentIndex = 0;
+                for (var j = 0; j < $li.length; j++) {
+                $li[j].className = '';
+                currentIndex++;
+                if(currentIndex>4){
+                    currentIndex=4;
+                }
+                console.log(currentIndex);
+                 }
+            $li[currentIndex].className = 'active';  
+            }
+            // move(oImgbox,"left",20,-currentIndex * aImg[0].offsetWidth);
+            change();
+        }
+        //
+        var timer1;
+
+        oDiv1.onmouseout = function () {
+            timer1 = setInterval(function () {
+               next.onclick();
+            }, 1500)
+  
+        }  
+        oDiv1.onmouseover = function () {
+            clearInterval(timer1);
+          
+
+        }
+
+    </script>
+</body>
+
+</html>

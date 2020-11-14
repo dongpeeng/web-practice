@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用事件</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oSex=document.getElementById('sex');
+        oSex.onchange=function(){
+            console.log(666);
+        }
+        
+        }
+
+    </script>
+</head>
+<body>
+    <p>
+        <input type="text" id="username" value="请输入名字">
+    </p>
+    <p>
+        <select name="" id="sex">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+    </p>
+    <p>
+        <input type="text" value='' id="search">
+    </p>
+    <div id="div1">div1</div>
+    <button id="btn">点我</button>
+    <form id="myform" action="http://www.baidu.com">
+    <p>
+        用户名：<input type="text" name="" id="">
+        密码：<input type="text" name="" id="">
+        <button type="submit">提交</button>
+    </p></form>
+
+    <div id="div2">12323</div>
+    <a id="a1" href="http://www.baidu.com">跳转</a>
+    <script>
+        var oInput=document.getElementById('username');
+        oInput.onfocus=function(){
+            console.log(this.value);
+            if(this.value=='请输入名字'){
+                this.value='';
+            }
+        };
+        oInput.onblur=function(){
+            if(this.value=''){
+                this.value='请输入姓名';
+            }
+        };
+        var oSex=document.getElementById('sex');
+        oSex.onchange=function(){
+            console.log(666);
+        }
+        //keydown ketup
+ 
+ 
+        var oSearch=document.getElementById('search');
+        oSearch.onkeydown=function(){
+            console.log(this.value);//置后f
+        }
+        oSearch.onkeyup=function(){
+            console.log(this.value);//同步
+        }
+        var oDiv1=document.getElementById('div1');
+        //鼠标的滑入滑出事件
+        oDiv1.onmouseover=function(){
+            console.log('im in');
+        }
+        oDiv1.onmouseout=function(){
+            console.log('im in');
+        }
+        //鼠标移动
+        oDiv1.onmousemove=function(){
+            console.log('im in');
+        }
+        //鼠标按下
+        oDiv1.onmousedown=function(){
+            console.log('im in');
+        }
+        var oBtn1=document.getElementById('btn');
+        oBtn1.onclick=function(){
+            console.log(111);
+        }
+        onsubmit 
+        var oForm =document.getElementById('myform');
+        oForm.onsubmit=function(){
+            return false;
+        }
+        //onload
+
+        var oDiv2=document.getElementById('div2')
+        //clientX,clientY: 获取鼠标点击位置（距离窗口）
+        //target: 事件源
+        oDiv2.onclick=function(e){
+            console.log(e.clientX,e.clientY);
+            console.log(e.target);
+        }
+        //keyCode
+        oDiv2.onkeydown=function(e){
+            console.log(e.keyCode);
+        }
+       
+       //阻止默认行为
+       var oA=document.getElementById('a1');
+       oA.onclick=function(e){
+           e.preventDefault();
+       }
+//事件冒泡：事件由里到外触发  false  321
+//事件捕获：事件从外往里触发  true   123
+    //    oA.addEventListener('click',function(){
+    //        console.log('a');
+    //    },false)
+        //    oA.addEventListener('click',function(e){
+    //        console.log('a');
+    //        e.stopPropagation();//阻止事件冒泡
+    //    },false)
+    </script>
+</body>
+</html>

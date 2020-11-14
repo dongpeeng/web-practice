@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择卡2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #container {
+            width: 300px;
+            margin: 50px auto 0;
+        }
+
+        #menu {
+            height: 40px;
+            border-bottom: solid black 2px;
+
+        }
+
+        #menu>li {
+            float: left;
+            width: 100px;
+            height: 100%;
+            line-height: 40px;
+            background-color: #cccccc;
+            text-align: center;
+        }
+
+        #menu>li.active {
+            background: black;
+            color: #ffffff;
+
+        }
+
+        #content {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        #content>div {
+            background: #000000;
+            color: #ffffff;
+            width: 100%;
+            height: 300px;
+            display: none;
+            position: absolute;
+            /* opacity:0; */
+            /* top: 0;
+            left: 0;
+            transition:ease 1s opacity; */
+        }
+
+        #content>div:first-child {
+            display: block;
+            /* opacity: 1; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="menu">
+            <li class="active">菜单1</li>
+            <li>菜单2</li>
+            <li>菜单3</li>
+        </ul>
+        <div id="content">
+            <div>111</div>
+            <div>222</div>
+            <div>333</div>
+        </div>
+    </div>
+    <script>
+        var oUl = document.getElementById('menu');
+        var aLi = oUl.getElementsByTagName('li');
+        var oDiv = document.getElementById('content');
+        var aDiv = oDiv.getElementsByTagName('div');
+        console.log(aLi);
+
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index=i;
+            aLi[i].onclick=function(){
+            //     if(aLi[this.index].className='active'){
+            //         aLi[this.index].className='';
+            //        adiv[this.index].style.display='none';
+            // }
+            for(var j=0;j<aLi.length;j++){
+                    aLi[j].className='';
+                    aDiv[j].style.display='none';
+                }
+            aLi[this.index].className='active';
+            aDiv[this.index].style.display='block';
+            }          
+        }
+
+        // oUl.onclick = function (e) {
+        //     e = e || window.event;
+        //     target = e.target || e.srcElement;
+        //     if (target.tagName = 'LI') {
+        //         for (var j = 0; j < aLi.length; j++) {
+        //             aLi[j].className = '';
+        //             aDiv[j].style.display = 'none';
+        //         }
+        //         target.className = 'active';
+        //         aDiv[target.index].style.display = 'block';
+        //     }
+        // }
+        // for (var i = 0; i < aLi.length; i++) {
+        //    aLi[i].index=i;
+           
+        // }
+    </script>
+</body>
+
+</html>

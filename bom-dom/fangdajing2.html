@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #small {
+            width: 400px;
+            height: 400px;
+            float: left;
+            position: relative;
+        }
+
+        #big {
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            float: left;
+            display: none;
+            position: relative;
+        }
+
+        #big img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #drag {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="small">
+        <img src="4.jpg" alt="">
+        <div id="drag"></div>
+    </div>
+
+    <div id="big">
+        <img src="4.1.jpg" alt="">
+    </div>
+    <script>
+        var oSmall = document.getElementById('small');
+        var oDrag = document.getElementById('drag');
+        var oBig = document.getElementById('big');
+        var oImg = oBig.getElementsByTagName('img')[0];
+
+        oSmall.onmouseover = function () {
+            oDrag.style.display = 'block';
+            oBig.style.display = 'block';
+
+            var maxWidth = oSmall.offsetWidth - oDrag.offsetWidth;
+            var maxHeight = oSmall.offsetHeight - oDrag.offsetHeight;
+
+            oSmall.onmousemove = function (e) {
+                // 小方块的移动
+                oDrag.style.left = e.clientX - oDrag.offsetWidth / 2 + 'px';
+                oDrag.style.top = e.clientY - oDrag.offsetHeight / 2 + 'px';
+
+                if (oDrag.offsetLeft < 0) {
+                    oDrag.style.left = 0;
+                }
+                if (oDrag.offsetLeft > maxWidth) {
+                    oDrag.style.left = maxWidth + 'px';
+                }
+                if (oDrag.offsetTop < 0) {
+                    oDrag.style.top = 0;
+                }
+                if (oDrag.offsetTop > maxHeight) {
+                    oDrag.style.top = maxHeight + 'px';
+                }
+
+                // 大图片的移动
+                var maxBigWidth = oImg.offsetWidth - oBig.offsetWidth;
+                var maxBigHeight = oImg.offsetHeight - oBig.offsetHeight;
+
+                // 计算移动比例
+                var proportionX = maxBigWidth / maxWidth;
+                var proportionY = maxBigHeight / maxHeight;
+
+                oImg.style.left = -(oDrag.offsetLeft * proportionX) + 'px';
+                oImg.style.top = -(oDrag.offsetTop * proportionY) + 'px';
+            }
+        }
+        oSmall.onmouseout = function () {
+            oDrag.style.display = 'none';
+            oBig.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
