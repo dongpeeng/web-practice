@@ -21,7 +21,7 @@ methods: {
         this.$router.push({
             name:'User',
             params:{
-                name:'wangwu',
+                name:'zhangsan',
                 id:888,
             }
         });
