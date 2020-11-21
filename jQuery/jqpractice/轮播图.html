@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="轮播图.css">
+</head>
+<body>
+    <div id="container">
+        <div id="img-box">
+            <img src="../../bom-dom/1.jpg" alt="">
+            <img src="../../bom-dom/2.jpg" alt="">
+            <img src="../../bom-dom/3.jpg" alt="">
+            <img src="../../bom-dom/4.jpg" alt="">
+            <img src="../../bom-dom/5.jpg" alt="">
+        </div>
+        <ul id="tab">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <span id="prev" class="btn">&lt;</span>
+        <span id="next" class="btn">&gt;</span>
+    </div>
+    <script src="../jquery-3.5.1.min.js"></script>
+    <script>
+        var index=0;
+        $('#tab li').on('click',function(){
+             index=$(this).index();
+            $(this).addClass('active').siblings().removeClass('active');
+            $('#img-box img').eq(index).css('display','block').siblings().css('display','none');
+        })
+        function change(index){      
+            $('#tab li').eq(index).addClass('active').siblings().removeClass('active');
+            $('#img-box img').eq(index).css('display','block').siblings().css('display','none');
+            // $('#img-box img').eq(index).show().siblings().hide();
+        }
+        $('#prev').on('click',function(){
+            index--;
+            if(index<0){
+                index=4
+            }
+            change(index);
+        });
+        $('#next').on('click',function(){
+            index++;
+            if(index>4){
+                index=0;
+            }
+            change(index);
+        });
+
+        var timer;
+        $('#container').mouseout(function(){
+            timer=setInterval(function(){
+           $('#next').trigger('click');
+        },1500);
+        });
+        $('#container').mouseover(function(){
+            clearInterval(timer);
+        })
+    </script>
+</body>
+</html>
