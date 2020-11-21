@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template</title>
+</head>
+
+<body>
+    <div id="app1">
+        {{msg}}
+        
+        <div v-for="item in list">
+            <h5>{{item}}</h5>
+            <h3>{{item}}</h3>
+        </div>
+        {{count1}}
+        <button @click="add1">加加</button>
+        <!-- <my-com :message="msg" :fn1="add1">
+            <p slot="slot1">今天是个好日子1</p>
+            <p slot="slot2">今天是个好日子2</p>
+        </my-com> -->
+        <my-com :message="msg" @son="add1">
+            <p slot="slot1">今天是个好日子1</p>
+            <p slot="slot2">今天是个好日子2</p>
+        </my-com>
+        <!-- template不会渲染在dom结构中 -->
+        <template v-for="item in list" >
+            <h5>{{item}}</h5>
+            <h3>{{item}}</h3>
+        </template>
+        
+        <my-component title="我的组件1" :msg="msg"></my-component>
+        <tpl title="tpl"></tpl>
+    </div>
+    <template id="my-com" >
+        <div>
+            <button @click="add2">++</button>
+            <slot name="slot1"></slot>
+            {{message}}
+            <h1>哈哈哈</h1>
+            <p>组件666</p>
+            <slot name="slot2"></slot>
+            {{msg}}
+            <button @click="add">点我</button>
+            {{count}}
+        </div>
+    </template>
+
+    <div id="app2">
+        <my-component title="我的组件2"></my-component>
+    </div>
+    <my-component title="我的组件3"></my-component>
+
+    <!-- 组件的定义
+        模块化：（js：请求数据,判断用户的设备，格式化当前时间 ）
+        组件化：(html,css,js =>(轮播图，弹窗))
+       -->
+    <script src="vue.js"></script>
+    <script>
+        //全局组件
+        Vue.component('my-component', {
+            template: '<div>{{title}} {{msg}}</div>',
+            /* 通过props来接受父组件传的值
+                若传的是常量  title=""
+                若传的是变量 :msg="msg"
+            */
+
+            props: ['title', 'msg']
+        })
+
+        //局部组件
+        let vm1 = new Vue({
+            el: '#app1',
+            data: {
+                msg: 'hello world',
+                list: [1, 2, 3],
+                count1:0,
+            },
+            methods: {
+                    add1(){
+                        this.count1++;
+                    }
+            },
+            components: {
+                'tpl': {
+
+                    template: '<div>0.0{{title}}</div>',
+                    props: ['title']
+                },
+                'my-com':{
+                    template:'#my-com',
+                    props:['title','message','fn1'],
+                    //组件是复用的，为了让组件间的数据互不干扰
+                    data(){
+                        return {
+                            msg:'我好开心啊',
+                            count:0,
+                        }
+                    },
+                    methods:{
+                        add(){
+                         this.count++;
+                     },
+                        add2(){
+                            //如果要在父组件中做事情 不能在子组件里操作 必须在父组件里处理
+                            //方案一
+                            //  this.fn1();
+                             //方案二 获取自定义事件@son 触发父组件自定义事件来调用
+                             this.$emit('son');
+                        }
+                    }
+                }
+            },
+        })
+        let vm2 = new Vue({
+            el: '#app2',
+            data: {
+                list: [1, 2, 3],
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

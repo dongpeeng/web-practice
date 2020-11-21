@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+        .div3{
+            background: red;
+            width: 50px;
+            height: 50px;
+        }
+        .div4{
+            background: blue;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+        <div id="div1" @click.once="fn1">div1
+            <div id="div2" @click.stop="fn2">div2</div>
+        </div>
+        <a href="https://www.baidu.com" @click.prevent="">百度一下</a>
+        <!-- .stop  阻止事件冒泡 e.stopPropagation() -->
+        <!-- .prevent        阻止默认行为：preventDefault     -->
+        <!-- .once  执行一次 -->
+        <!-- v-if v-else-if v-else 必须紧挨着 中间不能隔着其他的元素  直接决定dom结构中是否有这个元素  适合就判断一次再不更改状态的情况 -->
+        <!-- v-show 改变display="none"  显示/隐藏 适合频繁切换状态的时候用-->
+        <!-- v-model 双向数据绑定，只用于表单元素 -->
+        <button v-on:click="change">change</button>
+        <p v-if="tag">好好学习，天天向上</p>
+        <p v-else>0.0</p>
+        <p v-show="tag"></p>
+        <button @click="changeStyle">切换样式</button>
+        <div v-bind:class="{div3:isDiv3 , div4:isDiv4}">233</div>
+        <div :class="['div3',isDiv4? 'div4':'' ]">12345</div>
+        <!-- <div v-bind:class="{'div3','div4'}">12345</div> -->
+        <div :index="indexName"></div>
+        <div :id="name"></div>
+        <p>
+            <input type="text" v-model="msg"> 
+        </p>
+        <p>
+            <input type="checkbox" v-model="fruit" value="apple">苹果
+            <input type="checkbox" v-model="fruit" value="banana">香蕉
+            <input type="checkbox" v-model="fruit" value="pear">梨
+        </p>
+        <p>
+            <input type="radio" v-model="sex" value="male">男
+            <input type="radio" v-model="sex" value="female">女
+        </p>
+        <p>
+            <select v-model="city">
+                <option value="ha">哈尔滨</option>
+                <option value="qi">齐齐哈尔</option>
+                <option value="mu">牡丹江</option>
+                <option value="da">大庆</option>
+            </select>
+        </p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                tag:true,
+                isDiv3:false,
+                isDiv4:true,
+                indexName:66,
+                name:'kala',
+                msg:'',
+                fruit:['pear'],
+                sex:[],
+                city:'ha',
+            },
+            methods:{
+                fn1(){
+                    console.log('div1');
+                },
+                fn2(){
+                    console.log('div2');
+                },
+                change(){
+                    this.tag=!this.tag;
+                },
+                changeStyle(){
+                    this.isDiv3=!this.isDiv3;
+                    this.isDiv4=!this.isDiv4;
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>

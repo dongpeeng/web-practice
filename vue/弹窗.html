@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹窗</title>
+    <style>
+        #content{
+            width: 205px;
+            background: #f2f2f2;
+        }
+        #content button{
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        #container{
+            width: 400px;
+            background: #f2f2f2;
+            border: solid #cccccc 1px;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        #container header{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: solid 1px #cccccc;
+            padding: 0 20px;
+        }
+        #container .close{
+             float: right;
+             padding: 0 5px;
+             cursor: pointer;
+
+        }
+        #container footer{
+            padding: 10px;
+           
+        }
+        #container button{
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            border: solid 1px #000;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .wrapper label{
+            display: inline-block;
+                width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="content">
+            <button @click="showLogin">登录</button>
+            <button @click="showRegist">注册</button>
+        </div>
+        <my-dialog v-show="isLogin" title="登录" @close-dialog="hide">
+            <div class="wrapper" >
+                <label>用户名：</label>
+                <input type="text">
+            </div>
+            <div class="wrapper" >
+                <label>密码：</label>
+                <input type="text">
+            </div>
+        </my-dialog>
+        <my-dialog v-show="isRegist" title="注册" @close-dialog="hide">
+            <div class="wrapper" >
+                <label>用户名：</label>
+                <input type="text">
+            </div>
+            <div class="wrapper" >
+                <label>密码：</label>
+                <input type="text">
+            </div>
+            <div class="wrapper" >
+                <label>确认密码：</label>
+                <input type="text">
+            </div>
+        </my-dialog>
+    </div>
+    <template id="tpl" >
+        <div id="container">
+            <header>
+                {{title}}
+                <span  @click="hide1" class="close" > x </span>
+            </header>
+            <main>
+            <slot></slot>
+            </main>
+            <footer>
+                <button @click="hide1">{{title}}</button>
+            </footer>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            data: {
+                isLogin:false,
+                isRegist:false,
+            },
+            methods: {
+                showLogin(){
+                        this.isLogin=!this.isLogin;
+                        this.isRegist=false;
+                    },
+                showRegist(){
+                        this.isRegist=!this.isRegist;
+                        this.isLogin=false;
+                    },
+                hide(){
+                    this.isRegist=false;
+                    this.isLogin=false;
+                }
+            },
+            components:{
+                'my-dialog':{
+                    template:'#tpl',
+                    props:['title'],
+                    data(){
+                          return{}
+                    },
+                    methods:{
+                        hide1(){
+                            this.$emit('close-dialog');
+                        }
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

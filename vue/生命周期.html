@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{count}}</p>
+        <button @click="change">改变</button>
+        <button @click="del">销毁</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+       let vm= new Vue({
+            el:'#app',
+            data:{
+                count:0,
+            },
+            methods:{
+            change(){
+               this.count+=1;
+            },
+            del(){
+                vm.$destroy();
+            }
+            },
+            /* 虚拟dom  用js模拟dom结构 把dom的变化放在js层来做  只是渲染了虚拟dom变化了的部分 而没有变化的部分则不会重新渲染*/
+            /* 生命周期提供的方法叫钩子 */
+            //实例创建之前调用
+            beforeCreate(){
+                console.log('-------beforeCreate------');
+                console.log('el',this.$el);//undefined
+                console.log('data',this.$data);//undefined
+                console.log('innerHTML',document.getElementById('app').innerHTML);//  <p>{{count}}</p>
+            },
+            //实例创建成功 data中数据显示出来
+            created(){
+                console.log('-------created------');
+                console.log('el',this.$el);//undefined
+                console.log('data',this.$data);// data {__ob__: Observer}
+                console.log('innerHTML',document.getElementById('app').innerHTML);//  <p>{{count}}</p>
+            },
+            //data 在模板中先占了位置
+            beforeMount(){
+                console.log('------- beforeMount------');
+                console.log('el',this.$el);//el <div id=​"app">​…​</div>​<p>​{{count}}​</p>​</div>​
+                console.log('data',this.$data);// data {__ob__: Observer}
+                console.log('innerHTML',document.getElementById('app').innerHTML);//  <p>{{count}}</p>
+            },
+            //模板中的data数据显示出来了 挂载后
+            mounted(){
+                console.log('------- mounted------');
+                console.log('el',this.$el);//el <div id=​"app">​<p>​0​</p>​</div>​
+                console.log('data',this.$data);// data {__ob__: Observer}
+                console.log('innerHTML',document.getElementById('app').innerHTML);//innerHTML <p>0</p>
+            },
+            //当data数据发生变化调用，发生在虚拟dom的渲染
+            beforeUpdate(){
+                console.log('------- beforeUpdate------');
+                console.log('el',this.$el);//el <div id=​"app">​<p>​1</p>​</div>​
+                console.log('data',this.$data);// data {__ob__: Observer}
+                console.log('innerHTML',document.getElementById('app').innerHTML);//innerHTML <p>0</p>
+            },
+            //数据更改导致虚拟 dom 重新渲染
+            updated(){
+                console.log('-------updated ------');
+                console.log('el',this.$el);//el <div id=​"app">​<p>​1</p>​</div>​
+                console.log('data',this.$data);// data {__ob__: Observer}
+                console.log('innerHTML',document.getElementById('app').innerHTML);//innerHTML <p>1</p> 
+            },
+            //在实例销毁之前调用，此时实例仍然可用
+            beforeDestroy(){
+                console.log('------- beforeDestroy------');
+                console.log('el',this.$el);//el <div id=​"app">​<p>0</p>​</div>​
+                console.log('data',this.$data);// data {__ob__: Observer}
+                console.log('innerHTML',document.getElementById('app').innerHTML);//innerHTML <p>0</p> 
+            },
+            //在vue实例销毁之后调用，vue实例指令的所有东西都会解除绑定，所有事件监听器都会被移除，所有的子实例也会被销毁
+            destroyed(){
+                console.log('-------destroyed ------');
+                console.log('el',this.$el);//el <div id=​"app">​<p>​0​</p>​</div>​
+                console.log('data',this.$data);// data {__ob__: Observer}
+                console.log('innerHTML',document.getElementById('app').innerHTML);//innerHTML <p>0</p> 
+            }
+        })
+            
+    </script>
+</body>
+</html>

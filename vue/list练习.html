@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list练习</title>
+    <style>
+        #app{
+            width: 400px;
+           
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg" value="">
+        <span><button @click="addList">添加</button></span>
+        <button @click="removeList">移除</button>    
+      <ul v-html="list" >      
+          <!-- <li>12345<span><button @click="removeList">删除</button></span></li> -->
+          
+          <!-- <li v-text="msg"><span><button @click="removeList">删除</button></span></li> -->
+      </ul>
+      
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var k=1;
+        new Vue({
+            el:'#app',
+            data:{
+             msg:'',
+             list:'',
+            },
+            methods:{
+             addList(){
+             k++;
+              this.list=this.list+'  <li>'+this.msg+'<span><button  v-on:click="removeList">删除</button></span></li>'
+              this.msg='';
+              console.log(this.list);
+             },
+             removeList(){
+              this.list='';
+             }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list练习2</title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        ul .active{ 
+           color: red;    
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+<input type="text" v-model="msg" @keyup="search">
+<button @click="add">添加</button>
+<ul>
+    <li v-for="(item,index) in showList"  :class="['list',item.isActive?'active':'']" @click="change(item)"> 
+        {{item.content}}
+        <button @click.stop="del(index)">删除</button>
+    </li>
+</ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm=new Vue({
+            el:'#app',
+            data:{
+                list:[
+                    {
+                        content:'123',
+                        isActive:false,
+                    },
+                ],
+                msg:'',
+                showList:[],
+            },
+            methods:{
+             add(){ 
+                 this.list.push({
+                     content:this.msg,
+                     isActive:false,
+                 });
+                 this.msg="";
+                 this.showList=[...this.list];
+             },
+             change(item){
+                 item.isActive=!item.isActive;
+                 this.list=[...this.showList]
+             },
+             del(index){
+                 this.list.splice(index,1);
+                 this.showList=[...this.list];
+             },
+             search(){
+                 this.showList=this.list.filter(function(obj,index,arr){
+                    
+                     return obj.content.includes(vm.msg);
+                 })
+             }
+            },
+        })
+    </script>
+
+</body>
+</html>

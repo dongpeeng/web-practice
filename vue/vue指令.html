@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue指令</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <button v-on:click="add('666',$event)">添加</button> -->
+        <button @click="add('666',$event)">添加</button>
+        <ul>
+            <!-- 参数的顺序是不可以变得，参数的名字可以随便取 -->
+            <li v-for="(student,index) in students">
+                <span>序号：{{index+1}}</span>
+                <span>姓名: {{student.name}} </span>
+                <span>年龄: {{student.age}} </span>
+            </li>
+        </ul>
+        <!-- v-html 可以插入一段html代码  {{}} 和v-text 的区别 渲染方式有区别 {{}}能看到改变的过程 -->
+        <p>{{msg}}</p>
+        <p v-text="msg"></p>
+        <p v-html="msg"></p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+       let vm= new Vue({
+            el:'#app',
+            data:{
+            msg:'<a href="">？？？</a>',
+            students: [{
+               
+                name:'lisi',
+                age:23
+            },
+            {   
+             
+                name:'zhangsan',
+                age:25
+            },
+            {
+               
+                name:'wangwu',
+                age:32
+            },
+        ],
+    },
+    methods: {
+        //this =>当前实例化的vue的对象{vm}
+        //获取属性  直接this.属性名
+        add(str,e) {
+          this.students.push({
+              name:'lili',
+              age:99
+          });
+          //获取对象事件必须写event
+          console.log(e);
+          console.log(str);
+        }
+    }
+})
+    </script>
+</body>
+</html>

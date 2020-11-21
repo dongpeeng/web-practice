@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性和监视器</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{firstName+' '+lastName}}</p>
+        <p>{{ name }}</p>
+        <p>{{a}}</p>
+        <button @click="change">改变</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      let vm = new Vue({
+            el:'#app',
+            data:{
+              firstName:'Jack',
+              lastName:'Smith',
+              a:9,
+              b:10,
+            },
+            //计算属性：一定要有返回值
+            computed:{
+                 name(){
+                    return this.firstName+' '+this.lastName;
+                 },
+            //      name:{
+            //          get(){
+            //              console.log('get');
+            //             return this.firstName+' '+this.lastName;
+            //          },
+            //          set(){
+            //              console.log('set');
+            //          }
+            //      }
+            },
+            methods:{
+           change(){
+                    this.a+=1;
+           }
+            },
+            watch:{
+                a: function (newVal,oldVal){
+                       console.log(newVal,oldVal);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
