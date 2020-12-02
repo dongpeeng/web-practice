@@ -1,0 +1,147 @@
+@import'./main.scss';
+
+//变量的定义
+
+$color:#eecc00;
+$color:#eeccff!default;//默认变量
+$student:'#student-list li';
+$attr:width;
+
+#container{
+    margin: 0 auto;
+    width: 1000px;
+    background: $color;
+    //选择器的嵌套
+.box{
+    height: 800px;
+    width: 300px;
+    background: #cccccc;
+    a{
+        background: red;
+        &:hover{//&是对当前对象的引用
+            background: blue;
+        }
+    }
+    &-item{
+        color: green;
+        //属性的嵌套
+        padding: {
+            top: 23px;
+            left: 50px;
+        };
+    }
+    //特殊变量  #{$student}
+    #{$student} {
+            list-style: none;
+            #{$attr}:200px;
+            color: #{$color};
+    }
+}
+//混合宏 给一个变量设置默认值不行 必须给所有变量设置默认值 
+@mixin box($w:200px,$h:200px,$p:20px) {
+    width: $w;
+    height: $h;
+    padding: $p;
+}
+.box2{
+    //若传的参数不全，则需要指明所传参数的含义
+    @include box($h:800px,$p:20px);
+    background: red;
+}
+.box3{
+    @include box(400px,100px,50px);
+    background: blue;
+}
+.box4{
+    width: 20px;
+    height: 20px;
+}
+.box5{
+    //继承
+    @extend .box4;
+    font-size: 50px;
+}
+.box6{
+    //只能写一个单位
+    width: 20*8px;
+    //必须有（） 除数不能有单位
+    height: (90px/3);
+    padding: percentage(800px/600px);
+}
+$img:'bg';
+$str:'hello world!';
+.box7{
+    background: #cccccc url('./imgs/'+$img+'.jpg');
+    &::after{
+        content: to-upper-case($str);
+        //返回的长度没有单位，不能直接作为某些属性的值
+        content: str-index($str, "o");
+        content: str-insert($str, '666', 6 );
+    }
+}
+.box8{
+    color: $color;
+    color: lighten($color, 20%);
+    color: darken($color, 20%);
+    color: opacify($color, 0.3);
+    color: transparentize($color, 0.3);
+}
+//列表
+$list1:1px solid #0000;
+$list2:1px solid;
+
+.box9{
+    border: $list1;
+    border: append($list2, red );
+    border: index($list1, solid );
+    border: join($list1, $list2 );
+    color: nth($list1,3);
+    z-index: length($list1);
+}
+$map:(color1:red,color2:green,color3:blue); //获取数组
+.box10{
+    color: map-keys($map);
+    color: map-values($map);
+    color: map-has-key($map,color2);
+    // color: map-merge($map, ($color4:#000000));
+    // color: map-remove($map,color2,color3);
+}
+@for $i from 1 to 10 {
+    .item#{$i}{
+        width: 100px*$i;
+    }
+}
+@for $i from 1 through 10 {
+    .item#{$i}{
+        width: 100px*$i;
+    }
+}
+@each $item in $list1 {
+    .item-#{$item} {
+        width: #{$item};
+    }
+}
+$i:1;
+@while $i<5 {
+    .student-#{$i}{
+        padding: 20px;
+    }
+    $i:$i+1;
+}
+@function fn1($n){
+    @if ($n==0) {
+        @return red;
+    }
+    @else if($n==1){
+        @return green;
+    }
+    @else {
+        @warn '注意看，这样容易有问题！';
+        @error '出错了！';
+        @return blue;
+    }
+}
+.box11{
+    color: fn1(1);
+}
+}

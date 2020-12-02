@@ -1,0 +1,118 @@
+#container {
+  margin: 0 auto;
+  width: 1000px;
+  background: #eecc00; }
+  #container .box {
+    height: 800px;
+    width: 300px;
+    background: #cccccc; }
+    #container .box a {
+      background: red; }
+      #container .box a:hover {
+        background: blue; }
+    #container .box-item {
+      color: green;
+      padding-top: 23px;
+      padding-left: 50px; }
+    #container .box #student-list li {
+      list-style: none;
+      width: 200px;
+      color: #eecc00; }
+  #container .box2 {
+    width: 200px;
+    height: 800px;
+    padding: 20px;
+    background: red; }
+  #container .box3 {
+    width: 400px;
+    height: 100px;
+    padding: 50px;
+    background: blue; }
+  #container .box4, #container .box5 {
+    width: 20px;
+    height: 20px; }
+  #container .box5 {
+    font-size: 50px; }
+  #container .box6 {
+    width: 160px;
+    height: 30px;
+    padding: 133.3333333333%; }
+  #container .box7 {
+    background: #cccccc url("./imgs/bg.jpg"); }
+    #container .box7::after {
+      content: "HELLO WORLD!";
+      content: 5;
+      content: "hello666 world!"; }
+  #container .box8 {
+    color: #eecc00;
+    color: #ffe755;
+    color: #887500;
+    color: #eecc00;
+    color: rgba(238, 204, 0, 0.7); }
+  #container .box9 {
+    border: 1px solid #0000;
+    border: 1px solid red;
+    border: 2;
+    border: 1px solid #0000 1px solid;
+    color: #0000;
+    z-index: 3; }
+  #container .box10 {
+    color: color1, color2, color3;
+    color: red, green, blue;
+    color: true; }
+  #container .item1 {
+    width: 100px; }
+  #container .item2 {
+    width: 200px; }
+  #container .item3 {
+    width: 300px; }
+  #container .item4 {
+    width: 400px; }
+  #container .item5 {
+    width: 500px; }
+  #container .item6 {
+    width: 600px; }
+  #container .item7 {
+    width: 700px; }
+  #container .item8 {
+    width: 800px; }
+  #container .item9 {
+    width: 900px; }
+  #container .item1 {
+    width: 100px; }
+  #container .item2 {
+    width: 200px; }
+  #container .item3 {
+    width: 300px; }
+  #container .item4 {
+    width: 400px; }
+  #container .item5 {
+    width: 500px; }
+  #container .item6 {
+    width: 600px; }
+  #container .item7 {
+    width: 700px; }
+  #container .item8 {
+    width: 800px; }
+  #container .item9 {
+    width: 900px; }
+  #container .item10 {
+    width: 1000px; }
+  #container .item-1px {
+    width: 1px; }
+  #container .item-solid {
+    width: solid; }
+  #container .item-#0000 {
+    width: #0000; }
+  #container .student-1 {
+    padding: 20px; }
+  #container .student-2 {
+    padding: 20px; }
+  #container .student-3 {
+    padding: 20px; }
+  #container .student-4 {
+    padding: 20px; }
+  #container .box11 {
+    color: green; }
+
+/*# sourceMappingURL=index.css.map */

@@ -26,7 +26,7 @@ export default {
 
         },
       methods: {
-            //对mapMutations 进行映射
+            //对Mutations 进行映射
           ...mapMutations(["add","addFun"]),
           //对Actions 进行映射
           ...mapActions(["reduceFun"]),
