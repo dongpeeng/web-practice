@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .pics{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        .pic1{
+            width: 400px;
+            height: 400px;
+
+        }
+        @keyframes picDraw {
+            0%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        .pic2{
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            left: 0;
+            top: 0;
+            -webkit-animation: picDraw 5s ease-in-out infinite;
+        }
+
+        /*  */
+        .live{
+           position: relative;
+           margin: 35px auto;
+           /* width: 200px;
+           height: 200px; */
+           width: 150px;
+            height: 200px;
+            background: url("images/balloon.png");
+            background-size: 150px 200px;
+            -webkit-animation-name: scaleDraw; /*关键帧名称*/
+            -webkit-animation-timing-function: ease-in-out; /*动画的速度曲线*/
+            -webkit-animation-iteration-count: infinite;  /*动画播放的次数*/
+            -webkit-animation-duration: 5s; /*动画所花费的时间*/
+
+       }
+       .live img{
+           width: 200px;
+           height: 200px;
+           z-index: 0;
+       }
+        @keyframes living {
+            0%{
+                transform: scale(1);
+                opacity: 0.5;  
+            }
+            50%{
+                transform: scale(1.5);  
+                opacity: 0;   /*圆形放大的同时，透明度逐渐减小为0*/
+            }
+            100%{
+                transform: scale(1);
+                opacity: 0.5;
+            }
+        }
+        @keyframes scaleDraw {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+            0%{
+                transform: scale(1);  /*开始为原始大小*/
+            }
+            25%{
+                transform: scale(1.1); /*放大1.1倍*/
+            }
+            50%{
+                transform: scale(1);
+            }
+            75%{
+                transform: scale(1.1);
+            }
+        }
+/*         .live span{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            left: 0;
+            bottom: 0;
+            background: #fff;
+            border-radius: 50%;
+            -webkit-animation: living 3s linear infinite;
+            z-index: -1;
+        } */
+        .live span:nth-child(2){
+            -webkit-animation-delay: 1.5s; /*第二个span动画延迟1.5秒*/
+        }
+
+    </style>
+</head>
+<body>
+    <div class="pics">
+        <img src="../bom-dom/bg1.png" alt="" class="pic1">
+        <img src="../bom-dom/bg2.png" alt="" class="pic2">
+    </div>
+    <div class="live">
+        <img src="fire.jpg" alt="">
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>

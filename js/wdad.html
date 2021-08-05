@@ -9,17 +9,18 @@
     <script>
         //引用传递 和值传递
       //x={};
-        // var x=5;
-        // function test(){
-        //      x=6;
-        //     function test2(){
-        //         var x =7;
-        //         console.log(x);
-        //     }
-        //     test2();
+        var x=5;
+        function test(){
+             x=6;
+            function test2(){
+                var x =7;
+                console.log(x);
+            }
+            test2();
 
-        // }
-        // test();
+        }
+        test();
+        
     var b={
         x:7
     };
@@ -29,11 +30,12 @@
          };
         console.log(x);
     }
-  test3(b);
+  test3(b);//{}
+  console.log(b);//{x：7}
 
       function Test(x,name) {
           this.x=5;
-          this.name=name;
+          this.name='lisi';
             // function test2(){
             //     var y =7;
             //     console.log(y);
@@ -41,16 +43,17 @@
             // test2();
 
         }
-       var test1 =new Test(6,'lilei');
-        console.log(test1.x);
 
         console.log(a);        //undefined          变量提升
         var a=1;
 
 
-        // var a;
-        // console.log(a);
-        // a=1;
+        var a;
+        console.log(a);
+        a=1;
+
+
+        
     </script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //解题思路就是用dfs回溯算法 
+        let res=[];
+        var restoreIp = function(s) {
+        dfs(s,0,0,'');
+        return res;
+        }
+
+        //千分位分割法
+    function dfs(ip,idx,num,path){
+      if(num>4) return;
+      if(num ===4 && idx===ip.length){
+        res.push(path);
+      }
+      for(let i=1;i<4;i++){
+        let str=ip.substring(idx,idx+i);
+        if(str[0]==='0' && str.length>1 || Number(str)>255) return;
+        dfs(ip,idx+i,num+1,path+str+(num===3? '':'.'));
+      }
+    }
+    console.log(restoreIp("1331311"));
+
+  //  var a=100
+  //  function b(){
+  //    a=50
+  //  }
+  // //  b()
+  //  console.log(a);//50 没有b（）就是100
+   
+    // var a=0
+    // function b(){
+    //   a=3
+    //   return;
+    //   function a(){}
+    // }
+    // b()
+    // console.log(b());
+    // console.log(a);//0
+    // var a=()=>{console.log(2);}
+    // var a=null
+    // a();//a is not a function
+
+   
+
+    </script>
+</body>
+</html>

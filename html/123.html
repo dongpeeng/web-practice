@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .menu{
+            height: 600px;
+        }
+        header{
+            height: 60px;
+            width: 300px;
+            background: black;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        .container{
+            width: 300px;
+            min-height: 440px;
+            display: flex;
+        }
+        .sidebar{
+            flex: 1;
+            color: black;
+            background: #cccccc;
+        }
+        .content{
+            flex: 2;
+            color: black;
+            background: green;
+        }
+        footer{
+            height: 100px;
+            width: 300px;
+            background: pink;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <header>header</header>
+        <div class="container">
+            <div class="sidebar">1</div>
+            <div class="content">2</div>
+    </div>
+        <footer>footer</footer>
+    </div>
+    <script>
+        function sortArray(arr){
+            var res=arr;
+            var res2=[];
+            var a=[];
+            var s;
+            for(var i=0;i<arr.length;i++){
+                res2.push(arr[i]%10);
+                for(var j=0;j<arr.length-i;j++){
+                    if(arr[j]<arr[j+1]){
+                        var temp=arr[j];
+                        arr[j]=arr[j+1];
+                        arr[j+1]=temp;
+                    }
+                }
+            }
+            // s=res.toString()
+            for(var k=0;k<res2.length;k++){
+                s=res2[k]+':'+res[k]
+                a.push(s)
+            }
+            a.sort().reverse()
+            console.log(res);
+            console.log(a); 
+            return res2;
+        }
+        console.log(sortArray([1,1234, 34, 304, 534, 555, 10, 49]));
+        name = '"a", "b"'; //"a" , "b"
+        name.replace(/"([^"]*)"/g, "'$1'");
+        console.log(name);
+        // var arr1=sortArray([1,1234, 34, 304, 534, 555, 10, 49])
+        // function array1(arr){
+        //     var res=[];
+        //     for(var i=0;i<arr.length;i++){
+        //         res.push(arr[i]%10);
+        //     }
+        //     console.log(res);
+        //     console.log(sortArray(res));
+            
+        // }
+        // array1(arr1);
+        var funcs = [];
+for (var i = 0; i < 3; i++) {          // let's create 3 functions
+    funcs[i] = function() {            // and store them in funcs
+        console.log("My value: " + i); // each should log its value.
+    };
+}
+for (var j = 0; j < 3; j++) {
+    funcs[j]();                        // and now let's run each one to see
+}
+
+    </script>
+</body>
+</html>

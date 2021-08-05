@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //手写 字符串逆序
+//         let str=prompt()
+// function solve(str){
+//         let str1=""
+//     for(let i=str.length;i>=0;i--){
+//         str1+=str.charAt(i)
+//     }
+//         return str1
+//     }
+// console.log(solve(str))
+
+function fn4(){
+    var a= 0;
+    var b=function (){     
+        // return a;
+    }
+    //     console.log( (setTimeout(function (){     
+    // },1500)));
+   return (setTimeout(b(),1500))*2
+    // return b();
+}
+console.log(fn4())
+console.log(fn4())
+console.log(fn4())
+console.log(fn4())
+
+var obj = {
+     name: 'inke',
+     arr: ['a', 'b', 'c']
+   }
+
+   var obj2 = obj
+
+   var arr = obj2.arr
+   arr = ['a', 'b ', 'c', 'd']
+   obj2.name = 'jd'
+   console.log(obj2);
+   console.log(obj2.arr)
+   console.log(obj.name)
+   console.log(obj === obj2)
+   console.log(arr === obj2.arr)
+
+   var funcs = [];
+for (var i = 0; i < 3; i++) {          // let's create 3 functions
+    funcs[i] = function() {            // and store them in funcs
+        console.log("My value: " + i); // each should log its value.
+    };
+}
+// for (var j = 0; j < 3; j++) {
+//          funcs[j]()           // and now let's run each one to see
+// }
+for (let j = 0; j < 3; j++) {
+         funcs[j]()           // and now let's run each one to see
+}
+// for(var i=0;i<3;i++){
+//         (function(i){            
+//             setTimeout( funcs[i],1000);
+//         })(i);
+//     }
+    for(var i=0;i<3;i++){
+        (function(index){            
+            setTimeout(funcs[index],(index+1)*1000);
+        })(i);
+    }
+    // for(let i=0;i<3;i++){
+    //     (function(index){            
+    //         setTimeout(funcs[index],(index+1)*1000);
+    //     })(i);
+    // }
+        // for(let i=0;i<3;i++){
+        
+        //     setTimeout((i) => {
+        //         console.log(i)
+        //     }, (i+1)*1000);        
+        // }
+    // var a;
+    // var add ={
+        
+    //     curry:function(a){
+                // return a+1
+    //     }
+    // }
+    // // console.log(add.curry(1));
+    // var add1=add.curry
+    // var add1 = add.curry(1);
+    // console.log(add1(6));  // 输出7
+
+var add =(num1)=>{
+    return (num2)=>{
+        return num1+num2
+    }
+}
+var add1=add(1);
+console.log(add1(3));
+
+//     var curry = (fn)=>{
+//         args = [];
+//         return ()=>{
+//             if(arguments.length == 0){
+//                 return fn.apply(this, args);
+//             }
+//             else{
+//                 [].push.apply(args, arguments);
+//             return arguments.callee;
+//             }
+//         }
+// }
+
+      
+// addSum = ()=>{
+//     sum = 0;
+//   for (num in arguments){
+//     sum += num;
+//     return sum;
+//   }
+// }
+
+
+// currySum = curry(addSum);
+
+// currySum(1, 2, 3);
+// currySum(1);
+// currySum(1);
+// currySum(1);
+// currySum(1);
+// currySum();
+
+
+function charaat(str,pos){
+    if(pos<str.length){
+        return  str.slice(pos,pos+1)
+   
+    }
+}
+console.log(charaat("abcddef",6));
+
+    </script>
+</body>
+</html>

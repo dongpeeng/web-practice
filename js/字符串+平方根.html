@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function simpleFind(s1,s2){
+            var res=[];
+            var result=0;
+            var sum=0;
+            for(item1 of s1){
+                for(item2 of s2){
+                    if(item1==item2){
+                        res.push(item1);
+                    }
+                }
+            }
+            let arr=[];
+            for(let i=0;i<res.length;i++){
+                for(let j=i+1;j<res.length;j++){
+                    if(res[i]==res[j]){
+                        sum++;
+                    }
+                }
+                    arr.push(sum);
+                    sum=1;
+            }
+            let max =Math.max(...arr);
+            let str1=arr.join('');
+            let str2=max.toString();
+            let index=str1.indexOf(str2);
+            let max2=parseInt(str2);
+           return res[index]+','+max2;
+		
+}
+        console.log(simpleFind(['a','b','d','e','c'],['a','d','e','f','e','e','g']));
+
+        function xSqrt(x){
+            if(isNaN(x)){
+                return NaN;
+            }else if(x<=1){
+                return x;
+            }
+            var res=x;
+            var last;
+            do{
+                last=res;
+                res=(res+x/res)/2;
+            }while(Math.abs(res-last)>= Number.EPSILON)
+            return parseInt(res);
+        }
+        console.log(xSqrt(8));
+
+        function chicken(n){
+            var res;
+            var sum;
+            for(var i=0;i<=100;i++){
+                for(var j=0;j<=100;j++){
+                    for(var k=0;k<=100;k++){
+                        // let sum=0;
+                        res=sum;
+                        sum=7*i+13*j+29*k;
+                       if(sum<=n || i*7<=n||i*13<=n||j*29<=n){
+                           while(sum==n && sum<=10000 && sum>0){
+                               console.log(sum);
+                               return true;   
+                                break;
+                        }continue;
+                }
+                
+
+            }
+        }
+        }
+        console.log(res);
+       if(res>n){
+           return false;
+       }
+    }
+        console.log(chicken(49))
+    </script>
+</body>
+</html>

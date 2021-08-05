@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 假设前端同学通过接口向后端传了天猫的行业信息，例如：
+industry_list = [
+  {
+     "parent_ind" : "女装",
+     "name" : "连衣裙"
+  },
+  {
+     "name": "女装"
+  },
+  {
+     "parent_ind" : "女装",
+     "name" : "半身裙"
+  },
+  {
+     "parent_ind" : "女装",
+     "name" : "A字裙"
+  },
+  {
+     "name": "数码"
+  },
+  {
+    "parent_ind" : "数码",
+     "name": "电脑配件"
+  },
+  {
+    "parent_ind" : "电脑配件",
+     "name": "内存"
+  },
+]
+
+为了取用方便，我们希望可以将其转换为树状格式，例如：
+{
+  "数码": {
+    "电脑配件": {
+        "内存" : {}
+     }
+  },
+  "女装" : {
+     "连衣裙": {},
+    "半身裙": {},
+    "A字裙": {}
+  }
+}
+实现一个方法完成这个转换,时间复杂度请控制在O(n)
+def convert_format(data):
+       pass */
+    function convert_format(data){
+	let dataTree = {};
+
+	let dataArr = JSON.parse(JSON.stringify(data));
+	let spliceNum = 0;
+	for (let i = 0; i < data.length; i++) {
+		let parent = data[i].parent_ind;
+		let name = data[i].name;
+		if (!parent) {
+			dataTree[name] = {}
+			dataArr.splice(i - spliceNum, 1);
+			spliceNum++;
+		}
+	}
+	let dataArr2 = JSON.parse(JSON.stringify(dataArr));
+	spliceNum = 0;
+	for (let i = 0; i < dataArr.length; i++) {
+		let parent = dataArr[i].parent_ind;
+		let name = dataArr[i].name;
+		if (dataTree[parent]) {
+			dataTree[parent][name] = {};
+			dataArr2.splice(i - spliceNum, 1);
+			spliceNum++;
+		}
+	}
+
+	dataArr = JSON.parse(JSON.stringify(dataArr2));
+	spliceNum = 0
+	for (let i = 0; i < dataArr2.length; i++) {
+		let parent = dataArr2[i].parent_ind;
+		let name = dataArr2[i].name;
+		for (let j in dataTree) {
+			if (dataTree[j][parent]) {
+				dataTree[j][parent][name] = {}
+				dataArr.splice(i - spliceNum, 1);
+				spliceNum++;
+			}
+		}
+		
+	}
+	console.log(JSON.stringify(dataTree),JSON.stringify(dataArr));
+}
+    </script>
+</body>
+</html>

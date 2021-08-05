@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a1{
+            color: red;
+        }
+
+        .a3{
+            color: yellow;
+        }
+        .a2{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <span class="a3 a2 a1">测试</span>
+    <script>
+        // 以下代码中，当foo是什么值的时候，会执行alert？
+// if ( !NaN){ alert("foo! ") }
+// A	"false"	B	“true”		C	1			D	0
+// E	-1			F	“”			G	undefined	H	null
+// I	NaN			J	false		K	[]			L	{}  M ![] O !{}
+//  D F G H I  j M O
+ 
+//  2)下列关于本地存储和cookie的描述哪些是正确的？
+// A	本地存储没有容量限制，cookie有容量限制
+// B	本地存储不随着http请求发送，cookie随着http请求发送
+// C	本地存储不能跨域，cookie可以有条件的跨域
+// D	本地存储在IE7以上（含）浏览器都可以使用，cookie全浏览器兼容
+// b C 
+
+// 4)有以下样式表的定义，则 <span class=‘a3 a2 a1’>测试</span> 的颜色是：
+// .a1{color:red}
+// .a2{color:blue}
+// .a3{color:yellow}
+// A	red			B	blue		C	yellow		D	不确定
+// C
+
+// 5)正则表达式 /^d+[^d]+/ 能匹配下列哪些字符串？
+// A	123		B	123a		C	d123		D	123def		E	abc3f E ^
+  
+// var num = 100;
+// function fn(){
+// var num = num + 1;
+// return num;
+// }
+// console.log( fn() );
+// A	101			B	1		C	undefined		D	NaN D
+
+// var a = {n: 1};
+// var b = a;
+// a.x = a={n:2}
+// console.log(a);//{n:2}
+// console.log(b);//{n:1,x:{n:2}}
+// console.log(a.x)//undefined 	
+// console.log(b.x)//{n:2}
+// A  undefined,{n:2}   B  {n:2}, {n:2}  C  {n:1},{n:2}  D  {n:2}, {n:1}
+// A
+
+function b({x, y} = { x: 0, y: 0 }) {
+      return [x, y];
+}
+console.log(b({x: 3, y: 8}));//[3,8]
+console.log(b({x: 3}));//[3,undefined]
+console.log(b({}));//[undefined,undefined]
+console.log(b());//[0,0]
+
+var a = "100";
+var b = 10;
+var c = a / b;
+var d = a + b;
+var e = [];
+var f = ![];
+console.log(e);
+console.log(f);
+console.log(c, d, e == f);//10,10010,true 
+console.log(![]);//false
+console.log([]);//[]
+console.log([]==false);//true
+console.log([]==null);//false
+console.log([]==0);//true
+console.log([]==undefined);//false
+
+
+var getFn = function(){
+var arrs = [];
+for( var i=0; i<3; i++ ){
+arrs.push(function(){
+return i;
+});
+}
+return arrs;
+};
+var fns = getFn();
+console.log(fns[1]());//3
+console.log( fns[0]() + fns[1]()); //6  let 为1
+
+// 1)给定一个链表，判断链表中是否有环。
+//     为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+    
+    
+// function isChainList(pos,list){
+//  if(list==null||list.){
+//    return err
+//  }
+// }
+
+// // 必须定义 `ShowMeBug` 入口类和 `public static void main(String[] args)` 入口方法
+// public class ShowMeBug {
+//   public static void main(String[] args) {
+//     System.out.println("Hello World!");
+//   }
+// }
+// public boolean isChainList(ListNode root){
+//   if(root==null|| root.next==null )
+//     return false;
+//   ListNode p1=root, ListNode p2=root;
+//   while(p1!=null && p2!=null && p2.next!=null){
+//     p1=p1.next;
+//     p2=p2.next.next;
+//     if(p1==p2){
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+
+
+//web页面优化
+//空间数据库
+//解决跨域问题
+//微信小程序导入
+    
+    </script>
+    
+</body>
+</html>

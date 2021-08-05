@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //千分位分割 接受一个参数 每三位以逗号分隔
+        function qian(a){
+            a=a.toString().split(',')
+            let arr=a[0].split('').reverse()
+            let res=[]
+            for(var i=0;i<arr.length;i++){
+                if(i%3==0&&i!=0){
+                    res.push(',')
+                }
+                res.push(arr[i])
+            }
+           res.reverse()
+           if(a[1]){
+               res=res.join('').concat(','+a[1])
+           }else{
+               res=res.join('')
+           }
+            console.log(res);
+        }
+        qian(123456789.123)
+    </script>
+</body>
+</html>

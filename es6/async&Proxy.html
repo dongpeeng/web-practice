@@ -7,7 +7,7 @@
 </head>
 <body>
     <!-- 
-        async 就是generator的语法糖
+        es7 async 就是generator的语法糖
      -->
     <script>
         //async函数调用完会返回一个promise对象
@@ -15,7 +15,7 @@
              return 666
          }
          fn1().then(val=>console.log(val)).catch(error=>console.log(error))
-        //2. await 后面一般是promise对象
+        //2. es7 await 后面一般是promise对象
          async function fn2(){
              try {
                 console.log('准备发送请求1');

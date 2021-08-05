@@ -84,6 +84,66 @@
        Promise.race([p3,p4,p5]).then(()=>{
            console.log('666');
        })
+//finally
+       Promise.prototype.finally = function (callback)
+          { let P = this.constructor; return this.then( value => P.resolve(callback()).then(() => value), 
+          reason => P.resolve(callback()).then(() => { throw reason }) ); };
+
+
+
+            var fs = require('fs');
+
+            // fs.readFile('./data.json', 'utf-8', function(error, data) {
+            //     if (error) {console.log(error)}
+            //     console.log(data)
+            // })
+
+            function promisify(f) {
+                return function() {
+                    var args = Array.prototype.slice.call(arguments);
+
+                    return new Promise(function(resolve, reject) {
+                        args.push(function(err, data) {
+                            if (err) reject(err);
+                            else resolve(data);
+                        });
+                        f.apply(null, args);
+                    });        
+                }
+
+            }
+
+            var readFilePromise = promisify(fs.readFile);
+            var debug = 'DEBUG';
+            readFilePromise('./data.json', 'utf-8')
+            .then(function(data) {
+                console.log(data);
+            })
+            .catch(function(err) {
+                console.err(err);
+            })
+
+//all
+            Promise.prototype.all = function(promises) {
+            let results = [];
+            let promiseCount = 0;
+            let promisesLength = promises.length;
+            return new Promise(function(resolve, reject) {
+                for (let val of promises) {
+                Promise.resolve(val).then(function(res) {
+                    promiseCount++;
+                    // results.push(res);
+                    results[i] = res;
+                    // 当所有函数都正确执行了，resolve输出所有返回结果。
+                    if (promiseCount === promisesLength) {
+                    return resolve(results);
+                    }
+                }, function(err) {
+                    return reject(err);
+                });
+                }
+            });
+            };
     </script>
 </body>
 </html>
