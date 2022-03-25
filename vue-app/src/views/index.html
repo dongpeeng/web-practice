@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset='utf-8'>
+    <title>http-vue-loader引用vue组件</title>
+    <!-- 页面描述 -->
+    <meta name="description" content="" />
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <!-- 不让百度转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--页面css end-->
+    
+    <style type="text/css">
+        body {
+            background: #f5f5f5;
+            margin: auto;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="forget-pass">
+        <address-info :data="datas" @addressclick="addressClick"></address-info>
+    </div>
+
+
+    <!--公共js start-->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!--公共js end-->
+     <!-- 引入vue.js -->
+     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+     <!-- vueRouter -->
+     <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+     <!-- vuex -->
+     <script src="https://unpkg.com/vuex"></script>
+    <!-- 引入 http-vue-loader -->
+    <script src="https://unpkg.com/http-vue-loader"></script>
+    <!--页面js start-->
+    <script type="text/javascript">
+        // Vue.use(httpVueLoader)
+        var vm = new Vue({
+            el: '#app',
+            components: {
+                'address-info': httpVueLoader('indexs.vue')
+            },
+            data: {
+                // 传到组件的数据
+                datas: {
+                    username: '李湘湘',
+                    phone: '123456789',
+                    address_str: '用户地址用户地址用户地址用户地址'
+                }
+            },
+            methods: {
+                addressClick() {
+                    // 这里执行跳转地址列表
+                    console.log('父组件点击了，跳转到地址列表');
+                },
+            },
+            mounted: function () {
+
+            },
+            destroyed: function () {
+
+            },
+            created: function () {
+            }
+
+        })
+
+
+    </script>
+    <!--页面js end-->
+
+</body>
+
+</html>

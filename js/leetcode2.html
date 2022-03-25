@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*  链表的中间结点 */
+        //         var middleNode = function(head) {
+        //          const vals = [];
+        //             while (head !== null) {
+        //                 vals.push(head.val);
+        //                 head = head.next;
+        //             }
+        //     console.log(vals)
+
+
+        // };
+        // console.log(middleNode([1,2,3,4,5]));
+        function calcYangHuisTriangle(n) {
+            if (n === 0) return []
+            if (n === 1) return [[1]]
+            if (n === 2) return [[1], [1, 1]]
+            // 杨辉三角的概念
+            const arr = [[1], [1, 1]]
+            for (let i = 3; i <= n; i++) {
+                const arr2 = new Array(i).fill(1)
+                for (let j = 0; j < arr[i - 2].length; j++) {
+                    if (arr[i - 2][j] && arr[i - 2][j + 1]) {
+                        arr2[j + 1] = arr[i - 2][j] + arr[i - 2][j + 1]
+                    }
+                }
+                arr.push(arr2)
+            }
+            return arr
+        }
+        console.log(calcYangHuisTriangle(6))
+        /* . Fizz Buzz */
+        var fizzBuzz = function (n) {
+            let answer = []
+            if (n > 0) {
+                for (let i = 1; i <= n; i++) {
+                    if (i % 3 == 0 && i % 5 == 0) {
+                        answer.push("FizzBuzz")
+                    } else if (i % 3 == 0) {
+                        answer.push("Fizz")
+                    } else if (i % 5 == 0) {
+                        answer.push("Buzz")
+                    } else
+                        answer.push(String(i))
+                }
+                return answer
+            }
+        };
+        console.log(fizzBuzz(15))
+        var maximumWealth = function (accounts) {
+            arrSum = []
+            for (let i = 0; i < accounts.length; i++) {
+                let sum = 0
+                for (let j = 0; j < accounts[i].length; j++) {
+                    sum = sum + accounts[i][j]
+                }
+                arrSum.push(sum)
+            }
+            return Math.max.apply(null, arrSum)
+        };
+        console.log(maximumWealth([[1, 2, 3], [3, 2, 1]]));
+        var reverse = function (x) {
+            let arr = []
+            if (x <= Math.pow(2,31) - 1 && x >= -Math.pow(2,31)) {
+                if (x >= 0) {
+                    arr = String(x).split('')
+                } else {
+                    arr = String(-x).split('')
+                }
+            } else
+                return 0
+            for (let i = 0, j = arr.length - 1; i < arr.length, j >= 0; i++, j--) {
+                if (i < j) {
+                    temp = arr[j]
+                    arr[j] = arr[i]
+                    arr[i] = temp
+                }
+
+            }
+            let res = Number(arr.join(""))
+            console.log(arr)
+            if (res <= Math.pow(2,31) - 1 && res >= -Math.pow(2,31)) {
+                if (x >=0) {
+                    return res
+                } else {
+                    return -res
+                }
+            } else return 0
+
+        };
+        console.log(reverse(1534236469));
+        var strStr = function(haystack, needle) {
+            return haystack.indexOf(needle)
+
+};
+console.log(strStr("",""));
+    </script>
+</body>
+
+</html>
