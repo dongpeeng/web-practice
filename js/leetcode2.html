@@ -72,7 +72,7 @@
         console.log(maximumWealth([[1, 2, 3], [3, 2, 1]]));
         var reverse = function (x) {
             let arr = []
-            if (x <= Math.pow(2,31) - 1 && x >= -Math.pow(2,31)) {
+            if (x <= Math.pow(2, 31) - 1 && x >= -Math.pow(2, 31)) {
                 if (x >= 0) {
                     arr = String(x).split('')
                 } else {
@@ -90,8 +90,8 @@
             }
             let res = Number(arr.join(""))
             console.log(arr)
-            if (res <= Math.pow(2,31) - 1 && res >= -Math.pow(2,31)) {
-                if (x >=0) {
+            if (res <= Math.pow(2, 31) - 1 && res >= -Math.pow(2, 31)) {
+                if (x >= 0) {
                     return res
                 } else {
                     return -res
@@ -100,11 +100,103 @@
 
         };
         console.log(reverse(1534236469));
-        var strStr = function(haystack, needle) {
+        var strStr = function (haystack, needle) {
             return haystack.indexOf(needle)
 
+        };
+        console.log(strStr("", ""));
+        /*  12. 整数转罗马数字*/
+        // var intToRoman = function (num) {
+        //     let nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+        //         chars = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+        //     let res = ""
+        //     while (num != 0) {
+        //         if (num >= nums[0]) {
+        //             res+=chars[0]
+        //             num-=nums[0]
+        //         }else{
+        //             nums.shift()
+        //             chars.shift()
+        //         }
+        //     }
+        //     return res
+        // };
+        // console.log(intToRoman(3));
+        var intToRoman = function (num) {
+            let nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+                chars = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+            let numsArray = [[1000, "M"], [900, "CM"], [500, "D"], [400, "CD"], [100, "C"], [90, 'XC'], [50, 'L'], [40, "XL"], [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]]
+            let res = ""
+            for (const [value, symbol] of numsArray) {
+                while (num >= value) {
+                    num -= value
+                    res += symbol
+                }
+                if (num == 0) {
+                    break
+                }
+            }
+            return res
+        };
+        console.log(intToRoman(499));
+        var myPow = function (x, n) {
+            if (n == 0) {
+                return 1
+            }
+            if (n < 0) {
+                return 1 / myPow(x, -n)
+            }
+            if (n % 2) {
+                return x * myPow(x, n - 1)
+            }
+            return myPow(x * x, n / 2)
+        };
+        console.log(myPow(2.00000, -2))
+        var isValid = function (s) {
+            let map = new Map([
+                ["(", ")"],
+                ["{", "}"],
+                ["[", "]"],
+            ])
+            let arr = []
+            for (let i = 0; i < s.length; i++) {
+                if (map.has(s[i])) {
+                    arr.push(s[i])
+                } else {
+                    console.log(map.get(arr[arr.length - 1]));
+                    if (map.get(arr[arr.length - 1]) == s[i]) {
+                        arr.pop()
+                    } else return false
+                }
+            }
+            return arr.length == 0
+        };
+        console.log(isValid("({[]})"));
+        var generateParenthesis = function (n) {
+  const res = [];
+
+  const dfs = (lRemain, rRemain, str) => { // 左右括号所剩的数量，str是当前构建的字符串
+    console.log(str);
+    if (str.length == 2 * n) { // 字符串构建完成
+      res.push(str);           // 加入解集
+      return;                  // 结束当前递归分支
+    }
+    if (lRemain > 0) {     
+        console.log(lRemain); 
+        console.log(rRemain);
+    console.log(str,2222);
+           // 只要左括号有剩，就可以选它，然后继续做选择（递归）
+      dfs(lRemain - 1, rRemain, str + "(");
+    }
+    if (lRemain < rRemain) {   // 右括号比左括号剩的多，才能选右括号
+      dfs(lRemain, rRemain - 1, str + ")"); // 然后继续做选择（递归）
+    }
+  };
+
+  dfs(n, n, ""); // 递归的入口，剩余数量都是n，初始字符串是空串
+  return res;
 };
-console.log(strStr("",""));
+        console.log(generateParenthesis(3));
     </script>
 </body>
 

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var xorOperation = function (n, start) {
+            let nums = []
+            let value = start
+            let i = 0
+            while (i < n) {
+                nums.push(value)
+                value += 2
+                i++
+            }
+            let res = nums[0]
+            console.log(nums);
+            for (let j = 1; j < nums.length; j++) {
+                res ^= nums[j]
+            }
+            return res
+        };
+        console.log(xorOperation(4, 3));
+        var searchInsert = function (nums, target) {
+            let i = 0
+            while (i < nums.length) {
+                if (nums[i] == target) {
+                    return i
+                } else {
+                    if (nums[i] < target && nums[i + 1] > target) {
+                        return i + 1
+                    } else if (target > nums[nums.length - 1]) {
+                        return nums.length
+                    } else if (target < nums[0]) {
+                        return 0
+                    }
+                }
+                i++
+            }
+        };
+        console.log(searchInsert([1, 3, 5, 6], 7));
+
+        var isPowerOfTwo = function (n) {
+            let sum = 1
+            let i = 0
+            if (n == 1) {
+                return true
+            }
+            while (sum < n) {
+                sum *= 2
+                if (sum == n) {
+                    break;
+                } else if (sum > n) {
+                    break
+                }
+                i++
+            }
+            return sum == n
+        }
+        console.log(isPowerOfTwo(3));
+        var reverseWords = function (s) {
+            let str = ""
+            let arr = s.split(" ")
+            for (let i = 0; i < arr.length; i++) {
+                str += arr[i].split("").reverse().join("") + " "
+            }
+            str[str.length - 1] = ""
+            return str
+        };
+        console.log(reverseWords("Let's take LeetCode contest"));
+        var majorityElement = function (nums) {
+            let count = Math.floor(nums.length / 2)
+            let arr = Array.from(new Set(nums))
+            for (let j = 0; j < arr.length; j++) {
+                let counts = 0
+                for (let i = 0; i < nums.length; i++) {
+                    if (nums[i] == arr[j]) {
+                        counts++
+                    }
+                    if (counts >= count) {
+                        return arr[j]
+                    }
+                }
+            }
+        };
+        var majorityElement2 = function (nums) {
+            let count = 0;
+            let candidate;
+            for (let a of nums) {
+                if (count == 0) candidate = a;
+                count += candidate == a ? 1 : -1;
+            }
+            return candidate;
+        };
+        console.log(majorityElement([2, 2, 1, 1, 1, 1, 1, 2, 2]));
+        /* map 存数组出现最多的数 */
+        var majorityElement3 = function (nums) {
+            const len = nums.length,
+                half = len / 2,
+                m = new Map();
+            for (let i = 0; i < nums.length; i++) {
+                const item = nums[i];
+                m.set(item, (m.get(item) || 0) + 1);
+                console.log(m);
+                if (m.get(item) > half) return item;
+            }
+        };
+        console.log(majorityElement3([2, 2, 1, 1, 1, 1, 1, 2, 2]));
+        var reverseString = function (s) {
+            let i = 0, j = s.length - 1;
+            while (i < j) {
+                let temp = s[i]
+                s[i] = s[j]
+                s[j] = temp
+                console.log(s);
+                i++
+                j--
+
+            }
+            return s
+        };
+        console.log(reverseString(["H", "s", "n", "c", "a", "h"]));
+        var lowestCommonAncestor = function (root, p, q) {
+            if (root == null) {
+                return root
+            }
+            if (root.val > p.val && root.val > q.val) {
+                let left = lowestCommonAncestor(root.left, p, q)
+                return left != null && left
+            }
+            if (root.val < p.val && root.val < q.val) {
+                let right = lowestCommonAncestor(root.right, p, q)
+                return rgiht != null && right
+            }
+            return root
+        };
+        console.log(lowestCommonAncestor([6, 2, 8, 0, 4, 7, 9, null, null, 3, 5], 2, 8));
+        var letterCombinations = function (digits) {
+            if (!digits) {
+                return []
+            }
+            let map = new Map([
+                ["2", "abc"],
+                ["3", "def"],
+                ["4", "ghi"],
+                ["5", "jkl"],
+                ["6", "mno"],
+                ["7", "pqrs"],
+                ["8", "tuv"],
+                ["9", "wxyz"]
+            ])
+            let arr1 = digits.split("")
+            let arr2 = []
+            let arr3 = []
+            let arr4 = []
+            if (arr1.length == 1) {
+                return map.get(arr1[0]).split("")
+            } else if (arr1.length <= 4 && arr1.length > 1) {
+                if (arr1.length == 2) {
+                    arr1[0] = map.get(arr1[0])
+                    arr1[1] = map.get(arr1[1])
+                    console.log(arr1);
+                    for (let i = 0; i < arr1[0].length; i++) {
+                        for (let j = 0; j < arr1[1].length; j++) {
+                            arr2.push(arr1[0].charAt(i) + arr1[1].charAt(j))
+                        }
+                    }
+                    return arr2
+                } else if (arr1.length == 3) {
+                    arr1[0] = map.get(arr1[0])
+                    arr1[1] = map.get(arr1[1])
+                    arr1[2] = map.get(arr1[2])
+                    console.log(arr1);
+                    for (let i = 0; i < arr1[0].length; i++) {
+                        for (let j = 0; j < arr1[1].length; j++) {
+                            arr2.push(arr1[0].charAt(i) + arr1[1].charAt(j))
+                        }
+                    }
+                    for (let i = 0; i < arr2.length; i++) {
+                        for (let j = 0; j < arr1[2].length; j++) {
+                            arr3.push(arr2[i] + arr1[2].charAt(j))
+                        }
+                    }
+                    return arr3
+                } else if (arr1.length == 4) {
+                    arr1[0] = map.get(arr1[0])
+                    arr1[1] = map.get(arr1[1])
+                    arr1[2] = map.get(arr1[2])
+                    arr1[3] = map.get(arr1[3])
+                    for (let i = 0; i < arr1[0].length; i++) {
+                        for (let j = 0; j < arr1[1].length; j++) {
+                            arr2.push(arr1[0].charAt(i) + arr1[1].charAt(j))
+                        }
+                    }
+                    for (let i = 0; i < arr1[2].length; i++) {
+                        for (let j = 0; j < arr1[3].length; j++) {
+                            arr3.push(arr1[2].charAt(i) + arr1[3].charAt(j))
+                        }
+                    }
+                    for (let i = 0; i < arr2.length; i++) {
+                        for (let j = 0; j < arr3.length; j++) {
+                            arr4.push(arr2[i] + arr3[j])
+                        }
+                    }
+                    return arr4
+                }
+
+            }
+            console.log(arr2);
+        };
+
+
+        var letterCombinations2 = (digits) => {
+            if (digits.length == 0) return [];
+            const res = [];
+            const map = {//建立电话号码和字母的映射关系
+                2: "abc",
+                3: "def",
+                4: "ghi",
+                5: "jkl",
+                6: "mno",
+                7: "pqrs",
+                8: "tuv",
+                9: "wxyz",
+            };
+            const dfs = (curStr, i) => {//curStr是递归每一层的字符串，i是扫描的指针
+                if (i > digits.length - 1) {//边界条件，递归的出口
+                    res.push(curStr); //其中一个分支的解推入res
+                    return; //结束递归分支，进入另一个分支
+                }
+                console.log(curStr);
+                console.log(res);
+                const letters = map[digits[i]]; //取出数字对应的字母
+                for (const l of letters) {
+                    //进入不同字母的分支
+                    dfs(curStr + l, i + 1); //参数传入新的字符串，i右移，继续递归
+                }
+            };
+            dfs("", 0); // 递归入口，传入空字符串，i初始为0的位置
+            return res;
+        };
+        // console.log(letterCombinations2("236"));
+            var kWeakestRows = function (mat, k) {
+                let map = new Map()
+                let res = []
+                for (let i = 0; i < mat.length; i++) {
+                            map.set(mat[i],i )
+                }
+                mat.sort()
+                return Array.from({ length: k }, (_, i) =>map.get(mat[i]))
+            }
+        console.log(kWeakestRows(
+            [[1, 1, 0, 0, 0],
+            [1, 1, 1, 1, 0],
+            [1, 0, 0, 0, 0],
+            [1, 1, 0, 0, 0],
+            [1, 1, 1, 1, 1]], 3
+        ));
+    </script>
+</body>
+
+</html>
