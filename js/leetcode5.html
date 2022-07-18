@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var compressString = function (S) {
+            let res = ""
+            let i = 0
+            let j = 1
+            let count = 1
+            while (i < S.length) {
+                if (S[i] == S[j]) {
+                    count++
+                } else {
+                    res += S[i] + count
+                    i = j
+                    count = 1
+                }
+                j++
+            }
+            return res.length < S.length ? res : S
+        };
+        console.log(compressString("aabcccccaaa"));
+        var MinStack = function () {
+            this.stack = []
+        };
+
+        /** 
+         * @param {number} val
+         * @return {void}
+         */
+        MinStack.prototype.push = function (val) {
+            this.stack.push(val)
+        };
+
+        /**
+         * @return {void}
+         */
+        MinStack.prototype.pop = function () {
+            this.stack.pop()
+        };
+
+        /**
+         * @return {number}
+         */
+        MinStack.prototype.top = function () {
+            return this.stack[this.stack.length - 1]
+
+        };
+
+        /**
+         * @return {number}
+         */
+        MinStack.prototype.getMin = function () {
+            return Math.min.apply(null, this.stack)
+        };
+        var minStack = new MinStack();
+        minStack.push(-2);
+        minStack.push(0);
+        minStack.push(-3);
+        minStack.getMin();
+        minStack.pop();
+        minStack.top();
+        minStack.getMin();
+
+        /**
+         * Your MinStack object will be instantiated and called as such:
+         * var obj = new MinStack()
+         * obj.push(val)
+         * obj.pop()
+         * var param_3 = obj.top()
+         * var param_4 = obj.getMin()
+         */
+    </script>
+</body>
+
+</html>

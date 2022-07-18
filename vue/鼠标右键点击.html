@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contextMenu{
+            margin: 0;
+            background: #fff;
+            z-index: 3000;
+            position: fixed;
+            list-style-type: none;
+            padding: 5px 0;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 400;
+            color: #333;
+            box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 30%);
+            text-align: center;
+            width: 5%;
+        }
+        .contextMenu li{
+            margin:8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-for="item in MenuList">
+            <div @contextmenu.prevent="openMenu($event,item)" style="margin:12px; width:10%;">
+               {{item.name}}
+            </div>
+        </div>
+        
+        <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextMenu">
+            <li>查看</li>
+            <li>删除</li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+               var app = new Vue({
+            el:'#app',
+            data:{
+                visible: false,
+                top: 0,
+                left: 0,
+                MenuList: [
+                    {name:'火锅'},
+                    {name:'烤肉'},
+                    {name:'猪蹄'}
+                ],
+            },
+            methods:{
+                openMenu(e,item) {
+                    console.log("e",e);
+                    console.log("item",item);
+                    let x = e.clientX;
+                    let y = e.clientY;
+                    this.top = y;
+                    this.left = x;
+                    this.visible = true;
+                },
+                closeMenu() {
+                    this.visible = false;
+                },
+            },
+            watch: {
+                visible(value) {
+                    if (value) {
+                        document.body.addEventListener('click', this.closeMenu)
+                    } else {
+                        document.body.removeEventListener('click', this.closeMenu)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

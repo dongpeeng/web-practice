@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>【每日一练】03—CSS实现动画循环进度</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #222;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .container .card {
+            position: relative;
+            width: 220px;
+            height: 250px;
+            background: #2a2a2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container .card .percent {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .container .card .percent svg {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            transform: rotate(270deg);
+        }
+
+        .container .card .percent svg circle {
+            width: 100%;
+            height: 100%;
+            fill: transparent;
+            stroke-width: 2;
+            stroke: #191919;
+            transform: translate(5px, 5px);
+        }
+
+        .container .card .percent svg circle:nth-child(2) {
+            stroke: var(--clr);
+            stroke-dasharray: 440;
+            stroke-dashoffset: calc(440 - (440 * var(--num)) / 100);
+            opacity: 0;
+            animation: fadeIn 1s linear forwards;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .dot {
+            position: absolute;
+            inset: 5px;
+            z-index: 10;
+            /* 360deg / 100 = 3.6 */
+            animation: animateDot 2s linear forwards;
+        }
+
+        @keyframes animateDot {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(calc(3.6deg * var(--num)));
+            }
+        }
+
+        .dot::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--clr);
+            box-shadow: 0 0 10px var(--clr),
+                0 0 30px var(--clr);
+        }
+
+        .number {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            animation: fadeIn 1s linear forwards;
+            animation-delay: 2.5s;
+        }
+
+        .number h2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 2.5em;
+        }
+
+        .number h2 span {
+            font-weight: 300;
+            color: #fff;
+            font-size: 0.5em;
+        }
+
+        .number p {
+            font-weight: 300;
+            font-size: 0.75em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.75);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!--第一个动画圆 HTML代码开始-->
+        <!--如果你HTML技能是100%就把num:数字修改为100，h2的地方也改为100-->
+        <div class="card">
+            <div class="percent" style="--clr:#04fc43;--num:89;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>89<span>%</span></h2>
+                    <p>Html</p>
+                </div>
+            </div>
+        </div>
+        <!--第一个动画圆 HTML代码结束，后面圆直接复制，修改相应的内容即可-->
+        <div class="card">
+            <div class="percent" style="--clr:#e69a0c;--num:95;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>95<span>%</span></h2>
+                    <p>CSS</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#fc0491;--num:80;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>80<span>%</span></h2>
+                    <p>JavaScript</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#260ae1;--num:90;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>90<span>%</span></h2>
+                    <p>Photoshop</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#0ae032;--num:65;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>65<span>%</span></h2>
+                    <p>After Effects</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#8b12ee;--num:55;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>55<span>%</span></h2>
+                    <p>Animate</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#f36d0e;--num:95;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>95<span>%</span></h2>
+                    <p>Illustrator </p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#04fc43;--num:88;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>88<span>%</span></h2>
+                    <p>Lightroom</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#0f08de;--num:80;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>80<span>%</span></h2>
+                    <p>Premiere</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#036a1d;--num:85;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>85<span>%</span></h2>
+                    <p>Dreamweav</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#04fc43;--num:89;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>89<span>%</span></h2>
+                    <p>VSCode</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#fee800;--num:70;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>70<span>%</span></h2>
+                    <p>InDesign</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#ff00be;--num:60;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>60<span>%</span></h2>
+                    <p>Javascript</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="percent" style="--clr:#06ccff;--num:95;">
+                <div class="dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                    <h2>95<span>%</span></h2>
+                    <p>Photoshop</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

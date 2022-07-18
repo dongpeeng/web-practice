@@ -1,59 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         //引用传递 和值传递
-      //x={};
-        var x=5;
-        function test(){
-             x=6;
-            function test2(){
-                var x =7;
+        //x={};
+        var x = 5;
+        function test() {
+            x = 6;
+            function test2() {
+                var x = 7;
                 console.log(x);
             }
             test2();
 
         }
         test();
-        
-    var b={
-        x:7
-    };
-    function test3(x){
-         var x={
-             
-         };
-        console.log(x);
-    }
-  test3(b);//{}
-  console.log(b);//{x：7}
 
-      function Test(x,name) {
-          this.x=5;
-          this.name='lisi';
-            // function test2(){
-            //     var y =7;
-            //     console.log(y);
-            // };
-            // test2();
+        var b = {
+            x: 7
+        };
+        function test3(x) {
+            console.log(x);
+            var x = {
+
+            };
+            console.log(x);
+        }
+        test3(b);//{}
+        console.log(b);//{x：7}
+
+        function Test(x, name) {
+            this.x = 5;
+            this.name = 'lisi';
+            function test2() {
+                var y = 7;
+                console.log(y);
+            };
+            test2();
 
         }
+        var test4 = new Test(4, 'shangsan')
 
+        Test.prototype.add=()=>{
+            console.log(3+5);
+        }
+        test4.add()
+        console.log(test4);
         console.log(a);        //undefined          变量提升
-        var a=1;
+        var a = 1;
 
 
         var a;
         console.log(a);
-        a=1;
-
-
-        
+        a = 1;
+        var arr = [1, 1, 1, 2, 3, 2, 4, 3, 4, {}, {}]
+        const newArr = arr.filter((item, index) => arr.indexOf(item) == index)
+        console.log(newArr);
     </script>
 </body>
+
 </html>

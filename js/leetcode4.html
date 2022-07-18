@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var plusOne = function (digits) {
+            const n = digits.length;
+            for (let i = n - 1; i >= 0; --i) {
+                if (digits[i] !== 9) {
+                    ++digits[i];
+                    for (let j = i + 1; j < n; ++j) {
+                        digits[j] = 0;
+                    }
+                    return digits;
+                }
+            }
+
+            // digits 中所有的元素均为 9
+            const ans = new Array(n + 1).fill(0);
+            ans[0] = 1;
+            return ans;
+        };
+        var plusOne2 = function (digits) {
+            let n = digits.length - 1;
+            while (digits[n] === 9) {
+                n--
+            }
+            if (n === -1) {
+                let res = new Array(digits.length + 1).fill(0);
+                res[0] = 1;
+                return res;
+            } else {
+                digits[n]++;
+                for (let i = n + 1; i < digits.length; i++) {
+                    digits[i] = 0;
+                }
+            }
+            return digits;
+        };
+        console.log(plusOne([1, 9, 8, 9, 9]));
+        /* 三数之和为1 */
+        var threeSum = function (nums) {
+            let ans = []
+            const len = nums.length
+            if (nums == null || len < 3) {
+                return ans
+            }
+            nums.sort((a, b) => a - b)
+            for (let i = 0; i < len; i++) {
+                if (nums[i] > 0) break;
+                if (i > 0 && nums[i] === nums[i - 1]) continue; // 去重
+                let L = i + 1;
+                let R = len - 1;
+                while (L < R) {
+                    const sum = nums[i] + nums[L] + nums[R]
+                    console.log(sum);
+                    if (sum === 0) {
+                        ans.push([nums[i], nums[L], nums[R]])
+                        while (L < R && nums[L] === nums[L + 1]) L++; // 去重
+                        while (L < R && nums[R] === nums[R - 1]) R--; // 去重
+                        L++
+                        R--
+                    } else if (sum < 0) {
+                        L++
+                    } else if (sum > 0) {
+                        R--
+                    }
+                }
+            }
+            return ans
+        };
+        console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+        /* 最接近三数之和 */
+        var threeSumClosest = function (nums, target) {
+            if (nums != null && nums.length >= 3) {
+                let min = Infinity;
+                nums.sort((a, b) => a - b)
+                /* sort() 不是默认按照从小到大排序 是按着首字符的大小 依次排序，进而第二个字符 */
+                console.log(nums);
+                for (let i = 0; i < nums.length; i++) {
+                    let l = i + 1
+                    let r = nums.length - 1
+                    while (l < r) {
+                        const sum = nums[i] + nums[l] + nums[r]
+                        if (Math.abs(sum - target) < Math.abs(min - target)) {
+                            min = sum;
+                        }
+                        if (sum < target) {
+                            l++
+                        } else if (sum > target) {
+                            r--
+                        } else {
+                            return sum
+                        }
+
+                    }
+                }
+                return min
+            }
+
+        }
+        console.log(threeSumClosest([1, 2, 4, 8, 16, 32, 64, 128], 82));
+        var lengthOfLongestSubstring = function(s) {
+
+    };
+    console.log(lengthOfLongestSubstring());
+    </script>
+</body>
+
+</html>
