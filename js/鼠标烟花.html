@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标点击烟花</title>
+    <style>
+        /* 设置css样式 */
+        body {
+            background: #000;
+            overflow: hidden;
+        }
+        .fire {
+            position: absolute;
+            width: 4px;
+            height: 30px;
+        }
+    </style>
+ 
+</head>
+    <div class="fire"></div>
+ 
+<body>
+    <script>
+        //给页面设置点击事件
+        document.onclick = function (eve) {
+            var e = eve || window.event;
+            //设置一个空数组,用来后面存放小烟花
+            var arr = [];
+            //获取鼠标点击的位置
+            var x = e.clientX;
+            var y = e.clientY;
+            //设置步长
+            var speed = 20;
+            //生成大烟花,设置他的css样式,出发点在可视区页面的下方
+            var fire = document.createElement('div');
+            fire.className = 'fire';
+            // randomColor随机颜色小脚本
+            fire.style.background = randomColor();
+            fire.style.left = x + 'px';
+            fire.style.top = document.documentElement.clientHeight + 'px';
+            //将大烟花追加到页面上
+            document.body.appendChild(fire);
+            //生成定时器
+            var t = setInterval(function () {
+            //判断如果大烟花的TOP值小于小于目标值,清除定时器,并且将大烟花清除
+                if (fire.offsetTop <= y) {
+                    clearInterval(t);
+                    document.body.removeChild(fire);
+                    //执行show(生成小烟花)
+                    show();
+                }
+                //让大烟花垂直向上运动
+                fire.style.top = fire.offsetTop - speed + 'px';
+            }, 30);
+ 
+            function show() {
+                //利用循环,生成50个小烟花,给小烟花添加css属性
+                for (var i = 0; i < 50; i++) {
+                    var sFire = document.createElement('div');
+                    // sFire.className = 'small-fire';
+                    sFire.style.left = x + 'px';
+                    sFire.style.top = y + 'px';
+                    // 心形背景
+                    // sFire.style.background = randomColor();
+                    sFire.style.color = randomColor();
+                    sFire.innerHTML = '❤';
+                    sFire.style.position = 'absolute';
+                    //生成随机数
+                    var a = Math.random() * 360;
+                    sFire.sx = Math.sin(a * 180 / Math.PI) * 20 * Math.random();
+                    sFire.sy = Math.cos(a * 180 / Math.PI) * 20 * Math.random();
+                    //将小烟花追加到页面上
+                    document.body.appendChild(sFire);
+                    //将生成的烟花信息都添加到数组中
+                    arr.push(sFire);
+                }
+            }
+            setInterval(function move() {
+                //利用循环一直改变小烟花的位置
+                for (var i = 0; i < arr.length; i++) {
+                    //设置将每次循环的第i个小烟花的运动范围
+                    arr[i].style.left = arr[i].offsetLeft + arr[i].sx + 'px';
+                    arr[i].style.top = arr[i].offsetTop + arr[i].sy + 'px';
+                    //让烟花垂直方向的位置每次都增加,实现下落效果
+                    arr[i].sy += 1;
+                    //判断烟花是否运动出屏幕可视区,如果是,就将它删除
+                    // clientHeigh = height + 上下padding 
+                    //  clientWidth = width+左右padding
+                    // Document.documentElement 是一个会返回文档对象（document）的根元素的只读属性（如HTML文档的 <html> 元素）
+                    if (arr[i].offsetLeft < 0 || arr[i].offsetLeft > document.documentElement.clientWidth ||
+                        arr[i].offsetTop > document.documentElement.clientHeight) {
+                        document.body.removeChild(arr[i]);
+                        // arr.splice(i,1);
+                    }
+                }
+            }, 30)
+        }
+        // 范围随机数
+        function random(max, min) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+        // 随机颜色
+        function randomColor() {
+            return "rgb(" + random(0, 255) + "," + random(0, 255) + "," + random(0, 255) + ")";
+        }
+    </script>
+</body>
+ 
+</html>
