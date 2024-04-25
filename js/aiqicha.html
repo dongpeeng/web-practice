@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 10px;
+    }
+
+    body {
+      font-size: 10px;
+    }
+
+    .box {
+      width: 400px;
+      border: #f00 1px solid;
+      padding: 20px;
+      position: relative;
+      font-size: 2em;
+    }
+
+    .container {
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 2rem;
+      margin-bottom: -30px;
+    }
+
+    .content {
+      margin-bottom: 30px;
+      margin-right: 20px;
+    }
+
+    .content:nth-of-type(3n) {
+      margin-right: 0;
+    }
+
+
+
+    .item {
+      text-align: center;
+      width: 100px;
+      height: 30px;
+      background-color: #f00;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="container">
+      <div class="content">
+        <div class="item">哈哈哈哈</div>
+      </div>
+      <div class="content">
+        <div class="item"></div>
+      </div>
+      <div class="content">
+        <div class="item"></div>
+      </div>
+      <div class="content">
+        <div class="item"></div>
+      </div>
+      <div class="content">
+        <div class="item"></div>
+      </div>
+      <div class="content">
+        <div class="item"></div>
+      </div>
+      <div class="content">
+        <div class="item"></div>
+      </div>
+      <div class="content">
+      </div>
+      <div class="content">
+        <div class="item"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var a = [1, 2, 3, 4]
+    var b = a
+    var c = b
+    c.push(5)
+    c.splice(2, 0, 5)
+    c.sort().reverse()
+
+    console.log(c);
+
+    // 找到首次出现两个相同的元素
+
+    // 数组去重
+
+    //eventloop
+    console.log('start');
+    setTimeout(() => console.log('setTimeout'), 0);
+    Promise.resolve().then(() => console.log('Promise'));
+    console.log('end');// start// end// Promise// setTimeout
+
+    //
+    console.log('start');
+    setImmediate(() => console.log('setImmediate'));
+    process.nextTick(() => console.log('process.nextTick'));
+    console.log('end');// start// end// process.nextTick// setImmediate
+
+    //
+    console.log('start');
+    requestAnimationFrame(() => console.log('requestAnimationFrame'));
+    Promise.resolve().then(() => console.log('Promise'));
+    console.log('end');// start// end// Promise// requestAnimationFrame
+
+    console.log('start');
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', xhr.onload = () => console.log('XMLHttpRequest'));
+    xhr.send();
+    Promise.resolve().then(() => console.log('Promise'));
+    console.log('end');// start// end// Promise// XMLHttpRequest
+
+  </script>
+</body>
+
+</html>

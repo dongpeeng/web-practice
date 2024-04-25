@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    async1();
+
+    const promise = new Promise((resolve, reject) =>
+    {
+      console.log(1);
+      setTimeout(() =>
+      {
+        console.log("6");
+        setTimeout(() => { console.log(8); }, 0)
+        resolve('success')
+        console.log(7);
+      }, 0);
+      console.log(2);
+    });
+
+    setTimeout(() =>
+    {
+      console.log(5);
+    }, 0)
+
+    async function async1 ()
+    {
+      console.log(9);
+      await async2();
+      console.log(11);
+    }
+
+    function async2 ()
+    {
+      new Promise((resolve, reject) =>
+      {
+        resolve(10)
+      }).then(res =>
+      {
+        console.log(res);
+      });
+    }
+
+    promise.then((res) =>
+    {
+      console.log(res);
+    })
+
+    console.log(4);
+
+  </script>
+</body>
+
+</html>

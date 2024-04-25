@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    var a = 0,
+      b = 0;
+
+    function A (a)
+    {
+      A = function (b)
+      {
+        console.log(a + b++);
+      };
+      console.log(a++);
+    }
+    A(1);//1
+    A(2);//4
+
+    var a = {},
+      b = {
+        n: '1'
+      },
+      c = {
+        m: '2'
+      };
+
+    a[b] = '唐诗';
+
+    a[c] = '宋词';
+
+    //会调用对象的 toString 方法, 所以 b、c 都等于 [object Object]
+    console.log(a[b]);//宋词
+
+
+    var test = (function (i)
+    {
+      return function ()
+      {
+        console.log(i *= 2);
+      }
+    })(2);
+
+    test(5);//4
+
+    console.log(1)
+
+    const promise = new Promise((resolve, reject) =>
+    {
+
+      console.log(2);
+
+      setTimeout(() =>
+      {
+        resolve(3);
+        reject(4);
+      }, 0);
+    });
+
+    promise.then((data) =>
+    {
+      console.log(data);
+    }).catch((error) =>
+    {
+      console.log(error);
+    });
+
+    console.log(5);
+
+    // 1 2 5 3
+
+    for (i = 0; i < 3; i++) {
+      setTimeout(() => console.log(++i), 0);
+    }
+    //4 5 6
+
+  </script>
+</body>
+
+</html>

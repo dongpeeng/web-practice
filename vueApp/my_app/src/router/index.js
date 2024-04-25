@@ -11,17 +11,17 @@ import BookDetails from '../views/BookDetails.vue';
 Vue.use(VueRouter);
 
 const routes = [
-	{ path: '/', name: 'Tv', component: Tv },
+	{ path: '/', name: Tv, component: Tv },
 	{
 		path: '/music',
-		name: 'Music',
+		name: Music,
 		component: () => import('../views/Music.vue'),
 	},
-	{ path: '/book', name: 'Book', component: Book },
-	{ path: '/chat', name: 'Chat', component: Chat },
-	{ path: '/tvComment', name: 'TvComment', component: TvComment },
-	{ path: '/tvDetails/:id', name: 'TvDetails', component: TvDetails },
-	{ path: '/bookDetails/:id', name: 'BookDetails', component: BookDetails },
+	{ path: '/book', name: Book, component: Book },
+	{ path: '/chat', name: Chat, component: Chat },
+	{ path: '/tvComment', name: TvComment, component: TvComment },
+	{ path: '/tvDetails/:id', name: TvDetails, component: TvDetails },
+	{ path: '/bookDetails/:id', name: BookDetails, component: BookDetails },
 ];
 
 const router = new VueRouter({

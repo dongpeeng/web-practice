@@ -2,102 +2,105 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
 
-        }
+    }
 
-        #small {
-            float: left;
-            width: 520px;
-            height: 280px;
-            position: relative;
-        }
+    #small {
+      float: left;
+      width: 520px;
+      height: 280px;
+      position: relative;
+    }
 
-        #drag {
-            width: 100px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.6);
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: none;
-        }
+    #drag {
+      width: 100px;
+      height: 100px;
+      background-color: rgba(255, 255, 255, 0.6);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: none;
+    }
 
-        #big {
-            float: left;
-            width: 520px;
-            height: 280px;
-            overflow: hidden;
-            position: relative;
-            display: none;
+    #big {
+      float: left;
+      width: 520px;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      display: none;
 
-        }
+    }
 
-        #big img {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-    </style>
+    #big img {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="small">
-        <img src="4.jpg" alt="">
-        <div id="drag"></div>
-    </div>
-    <div id="big">
-        <img src="4.1.jpg" alt="">
-    </div>
-    <script>
-        var oDiv1 = document.getElementById('small');
+  <div id="small">
+    <img src="./asset/4.jpg" alt="">
+    <div id="drag"></div>
+  </div>
+  <div id="big">
+    <img src="./asset/4.1.jpg" alt="">
+  </div>
+  <script>
+    var oDiv1 = document.getElementById('small');
 
-        var oDrag = document.getElementById('drag');
-        var oDiv2 = document.getElementById('big');
-        var bigImg = oDiv2.getElementsByTagName('img')[0];
+    var oDrag = document.getElementById('drag');
+    var oDiv2 = document.getElementById('big');
+    var bigImg = oDiv2.getElementsByTagName('img')[0];
 
-        oDiv1.onmouseover = function () {
-            oDrag.style.display = 'block';
-            oDiv2.style.display = 'block';
-            var maxWidth = oDiv1.offsetWidth - oDrag.offsetWidth;
-            var maxHeight = oDiv1.offsetHeight - oDrag.offsetHeight;
-            oDiv1.onmousemove = function (e) {
-                oDrag.style.left = e.clientX - oDrag.offsetWidth / 2 + 'px'
-                oDrag.style.top = e.clientY - oDrag.offsetHeight / 2 + 'px'
-                if (oDrag.offsetLeft < 0) {
-                    oDrag.style.left = 0;
-                }
-                if (oDrag.offsetLeft > maxWidth) {
-                    oDrag.style.left = maxWidth + 'px';
-                }
-                if (oDrag.offsetTop < 0) {
-                    oDrag.style.top = 0;
-                }
-                if (oDrag.offsetTop > maxHeight) {
-                    oDrag.style.top = maxHeight + 'px';
-                }
-
-                var bigMaxWidth = bigImg.offsetWidth - oDiv2.offsetWidth;
-                var bigMaxHeight = bigImg.offsetHeight - oDiv2.offsetHeight;
-
-                var ratio1 = bigMaxWidth / maxWidth;
-                var ratio2 = bigMaxHeight / maxHeight;
-
-                bigImg.style.left = -(oDrag.offsetLeft * ratio1) + 'px';
-                bigImg.style.top = -(oDrag.offsetTop * ratio2) + 'px';
-            }
+    oDiv1.onmouseover = function ()
+    {
+      oDrag.style.display = 'block';
+      oDiv2.style.display = 'block';
+      var maxWidth = oDiv1.offsetWidth - oDrag.offsetWidth;
+      var maxHeight = oDiv1.offsetHeight - oDrag.offsetHeight;
+      oDiv1.onmousemove = function (e)
+      {
+        oDrag.style.left = e.clientX - oDrag.offsetWidth / 2 + 'px'
+        oDrag.style.top = e.clientY - oDrag.offsetHeight / 2 + 'px'
+        if (oDrag.offsetLeft < 0) {
+          oDrag.style.left = 0;
         }
-        oDiv1.onmouseout = function () {
-            oDrag.style.display = 'none';
-            oDiv2.style.display = 'none';
+        if (oDrag.offsetLeft > maxWidth) {
+          oDrag.style.left = maxWidth + 'px';
         }
-    </script>
+        if (oDrag.offsetTop < 0) {
+          oDrag.style.top = 0;
+        }
+        if (oDrag.offsetTop > maxHeight) {
+          oDrag.style.top = maxHeight + 'px';
+        }
+
+        var bigMaxWidth = bigImg.offsetWidth - oDiv2.offsetWidth;
+        var bigMaxHeight = bigImg.offsetHeight - oDiv2.offsetHeight;
+
+        var ratio1 = bigMaxWidth / maxWidth;
+        var ratio2 = bigMaxHeight / maxHeight;
+
+        bigImg.style.left = -(oDrag.offsetLeft * ratio1) + 'px';
+        bigImg.style.top = -(oDrag.offsetTop * ratio2) + 'px';
+      }
+    }
+    oDiv1.onmouseout = function ()
+    {
+      oDrag.style.display = 'none';
+      oDiv2.style.display = 'none';
+    }
+  </script>
 </body>
 
 </html>

@@ -55,10 +55,10 @@ export default {
 			//必须用v2
 			if (this.isFinish) {
 				this.isFinish = false;
-				let baseUrl = 'https://bird.ioliu.cn/v2?url=';
-				let tvUrl = `https://m.douban.com/rexxar/api/v2/movie/suggestion?&start=${this.start}&count=10&new_struct=1&with_review=1&for_mobile=1`;
+				// let baseUrl = 'https://bird.ioliu.cn/v2?url=';
+				let tvUrl = `/api/v2/movie/suggestion?&start=${this.start}&count=10&new_struct=1&with_review=1&for_mobile=1`;
 				this.axios
-					.get(baseUrl + tvUrl)
+					.get(tvUrl)
 					.then((res) => {
 						console.log(res);
 						this.tvList = this.tvList.concat(res.data.items);
